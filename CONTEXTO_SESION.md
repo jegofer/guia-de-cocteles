@@ -1,0 +1,46 @@
+# CONTEXTO DE SESIÓN
+
+## PROYECTO
+50 cócteles explicados paso a paso: Guía visual y práctica para principiantes
+
+## OBJETIVO
+Libro editorial gastronómico de 55 páginas en formato PDF y HTML con 50 recetas clásicas y españolas, maquetación profesional a página individual y fotografías de alta calidad.
+
+## SITUACIÓN ACTUAL
+Proyecto completamente terminado, con las 50 imágenes auditadas y corregidas, PDF recompilado y validado en 55 páginas exactas (37.9 MB), prompt original preservado y sistema de memoria técnica implementado.
+
+## ÚLTIMO TRABAJO REALIZADO
+Auditoría visual exhaustiva de las 50 recetas. Se reemplazaron 15 fotografías desalineadas o no acordes (destacando San Francisco, Sol y sombra y Paloma) por imágenes de estudio de Wiki Loves Cocktails y Wikimedia Commons. Se recompiló `50_cocteles_explicados_paso_a_paso.pdf`, se guardó `PROMPT_ORIGINAL.md` y se generaron los 8 archivos de memoria técnica persistente.
+
+## PRÓXIMA ACCIÓN
+Revisión visual final por parte del usuario del libro en PDF y confirmación de satisfacción con las nuevas fotografías.
+
+## DECISIONES IMPORTANTES
+- Formato fijo de 1 cóctel = 1 página exacta A4, sin desbordamientos de texto.
+- Codificación de imágenes en Base64 dentro de `libro_cocteles.html` para garantizar autocontención e independencia de rutas relativas.
+- Distintivo verde `0,0% SIN ALCOHOL` destacado en cócteles vírgenes.
+- Todas las medidas expresadas en mililitros exactos (ml).
+
+## RESTRICCIONES IMPORTANTES
+- No alterar la altura ni la retícula de las páginas A4 para evitar que se desborden a páginas adicionales.
+- Mantener la correspondencia estricta entre la cristalería indicada en la ficha técnica y la imagen visible.
+- No modificar el repertorio de 50 cócteles sin instrucción expresa del usuario.
+
+## PROBLEMAS ABIERTOS
+- Ninguno. Todas las incidencias detectadas (INC-001 a INC-004) han quedado resueltas.
+
+## ARCHIVOS CLAVE
+- `/home/jesus/Documentos/GIT/Libro de cocteles/50_cocteles_explicados_paso_a_paso.pdf`: PDF final de 55 páginas.
+- `/home/jesus/Documentos/GIT/Libro de cocteles/libro_cocteles.html`: Maquetación editorial completa en HTML.
+- `/home/jesus/Documentos/GIT/Libro de cocteles/cocktails_data.py`: Base de datos de las 50 recetas.
+- `/home/jesus/Documentos/GIT/Libro de cocteles/generate_book.py`: Script de generación editorial.
+- `/home/jesus/Documentos/GIT/Libro de cocteles/images/`: Banco de 50 fotografías de alta resolución.
+- `/home/jesus/Documentos/GIT/Libro de cocteles/PROMPT_ORIGINAL.md`: Prompt inicial y directrices del proyecto.
+
+## DOCUMENTOS DE REFERENCIA
+- DME.md
+- ESTADO_PROYECTO.md
+- DECISIONES.md
+- INCIDENCIAS.md
+- TODO.md
+- ARCHIVOS.md

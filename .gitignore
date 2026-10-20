@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de trabajo temporales
+contact_sheet.jpg
+*.tmp
+.DS_Store
