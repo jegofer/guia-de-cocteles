@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#090d16">
+  <meta name="description" content="Guía interactiva para móvil de 50 cócteles explicados paso a paso con medidas exactas, fotos de alta resolución y trucos de bartender.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>50 Cócteles explicados paso a paso | Guía Web Móvil</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #090d16;
+      --bg-surface: #111827;
+      --bg-surface-elevated: #1f293d;
+      --bg-surface-hover: #26334d;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-gold: rgba(245, 158, 11, 0.35);
+      --gold-primary: #f59e0b;
+      --gold-light: #fbbf24;
+      --gold-glow: rgba(245, 158, 11, 0.2);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-soft: #cbd5e1;
+      --accent-green: #10b981;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+      --shadow-modal: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    /* HEADER & HERO */
+    header.hero {
+      background: linear-gradient(180deg, #131b2e 0%, #090d16 100%);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 2.2rem 1.25rem 1.8rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: 1px;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #ffffff 40%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.5;
+    }
+
+    /* HERO ACTIONS */
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #090d16;
+      box-shadow: 0 4px 15px var(--gold-glow);
+    }
+    .btn-gold:hover, .btn-gold:active {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      transform: translateY(-1px);
+    }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(10px);
+    }
+    .btn-glass:hover, .btn-glass:active {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* SEARCH & FILTER CONTROLS (STICKY) */
+    .sticky-controls {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(9, 13, 22, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.75rem 1rem;
+    }
+
+    .controls-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* SEARCH INPUT */
+    .search-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      width: 18px;
+      height: 18px;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 11px 40px 11px 42px;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .search-input:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 3px var(--gold-glow);
+      background: var(--bg-surface-elevated);
+    }
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: none;
+      padding: 4px 8px;
+    }
+
+    /* PILLS / CHIPS SCROLLER */
+    .chips-scroller {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 2px;
+    }
+    .chips-scroller::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip {
+      white-space: nowrap;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-soft);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .chip:hover {
+      background: var(--bg-surface-elevated);
+      color: #ffffff;
+    }
+    .chip.active {
+      background: var(--gold-primary);
+      color: #090d16;
+      border-color: var(--gold-light);
+      box-shadow: 0 2px 10px var(--gold-glow);
+    }
+
+    /* METRICS / STATS BAR */
+    .stats-bar {
+      max-width: 1200px;
+      margin: 1rem auto 0.5rem;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* GRID DE RECETAS */
+    .cocktails-container {
+      max-width: 1200px;
+      margin: 0.75rem auto 2rem;
+      padding: 0 1rem;
+    }
+
+    .cocktails-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* TARJETA DE CÓCTEL */
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px -10px rgba(0,0,0,0.6);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+    .card:active {
+      transform: scale(0.98);
+    }
+
+    /* IMAGEN DE TARJETA */
+    .card-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background: #0f172a;
+      overflow: hidden;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 45%;
+      transition: transform 0.35s ease;
+    }
+    .card:hover .card-img {
+      transform: scale(1.05);
+    }
+
+    .card-num {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(9, 13, 22, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(6px);
+      color: var(--gold-light);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: var(--radius-full);
+    }
+    .card-badge.badge-mocktail {
+      background: #047857;
+      border-color: #34d399;
+    }
+    .card-badge.badge-spanish {
+      background: #b45309;
+      border-color: #fbbf24;
+    }
+
+    /* CONTENIDO DE TARJETA */
+    .card-body {
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-header {
+      margin-bottom: 0.6rem;
+    }
+
+    .card-category {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold-primary);
+      margin-bottom: 2px;
+    }
+
+    .card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .card-taste {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+      font-style: italic;
+    }
+
+    .card-specs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      background: var(--bg-surface-elevated);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      font-size: 0.75rem;
+      margin-bottom: 0.9rem;
+    }
+    .card-spec-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .card-spec-label {
+      color: var(--text-muted);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .card-spec-val {
+      color: var(--text-main);
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    /* NO RESULTS */
+    .no-results {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--text-muted);
+      display: none;
+    }
+    .no-results h3 {
+      font-size: 1.3rem;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    /* MODAL / BOTTOM SHEET DE RECETA */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 100;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .modal-backdrop.open {
+      opacity: 1;
+    }
+
+    .modal-sheet {
+      background: var(--bg-surface);
+      width: 100%;
+      max-width: 680px;
+      max-height: 92vh;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-bottom: none;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-modal);
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @media (min-width: 680px) {
+      .modal-backdrop {
+        align-items: center;
+        padding: 1.5rem;
+      }
+      .modal-sheet {
+        border-radius: var(--radius-lg);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        max-height: 88vh;
+        transform: scale(0.95) translateY(20px);
+      }
+      .modal-backdrop.open .modal-sheet {
+        transform: scale(1) translateY(0);
+      }
+    }
+    .modal-backdrop.open .modal-sheet {
+      transform: translateY(0);
+    }
+
+    /* MODAL HERO */
+    .modal-hero {
+      position: relative;
+      height: 240px;
+      width: 100%;
+      background: #0f172a;
+    }
+    .modal-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 45%;
+    }
+    .modal-hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(9, 13, 22, 0.3) 0%, rgba(17, 24, 39, 0.95) 100%);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: rgba(9, 13, 22, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      z-index: 10;
+      transition: all 0.15s ease;
+    }
+    .modal-close-btn:hover, .modal-close-btn:active {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .modal-header-content {
+      position: absolute;
+      bottom: 14px;
+      left: 18px;
+      right: 18px;
+    }
+    .modal-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .modal-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+    }
+    .modal-subtitle {
+      color: var(--gold-light);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+
+    /* MODAL BODY */
+    .modal-content-area {
+      padding: 1.25rem 1.25rem 2.5rem;
+    }
+
+    /* SPECS GRID */
+    .modal-specs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: var(--bg-surface-elevated);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-subtle);
+    }
+    .modal-spec-cell {
+      text-align: center;
+    }
+    .modal-spec-cell .lbl {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    .modal-spec-cell .val {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* INGREDIENTES CHECKLIST */
+    .modal-section-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 4px;
+    }
+
+    .checklist {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      user-select: none;
+    }
+    .checklist-item:last-child {
+      border-bottom: none;
+    }
+    .checklist-item input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border-gold);
+      border-radius: 4px;
+      outline: none;
+      background: transparent;
+      cursor: pointer;
+      margin-top: 2px;
+      flex-shrink: 0;
+      display: grid;
+      place-content: center;
+      transition: all 0.15s ease;
+    }
+    .checklist-item input[type="checkbox"]:checked {
+      background: var(--gold-primary);
+      border-color: var(--gold-light);
+    }
+    .checklist-item input[type="checkbox"]:checked::before {
+      content: "✓";
+      color: #090d16;
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .checklist-item.checked span {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+    .checklist-text {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      line-height: 1.4;
+    }
+
+    /* PASOS PASO A PASO */
+    .steps-list {
+      list-style: none;
+      counter-reset: step-counter;
+      margin-bottom: 1.5rem;
+    }
+    .step-item {
+      counter-increment: step-counter;
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .step-num {
+      width: 26px;
+      height: 26px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-desc {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      line-height: 1.45;
+    }
+
+    /* CONSEJO DEL BARTENDER */
+    .bartender-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.05) 100%);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      margin-bottom: 1.5rem;
+    }
+    .bartender-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .bartender-text {
+      font-size: 0.85rem;
+      color: #fde68a;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    /* MODAL SHARE / ACTION */
+    .modal-footer-actions {
+      display: flex;
+      gap: 10px;
+      padding-top: 0.5rem;
+    }
+
+    /* INFO MODAL (GUÍA BÁSICA) */
+    .guide-modal-body {
+      padding: 1.5rem;
+    }
+    .guide-box {
+      background: var(--bg-surface-elevated);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-subtle);
+    }
+    .guide-box strong {
+      color: var(--gold-light);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.9rem;
+    }
+    .guide-box p {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      line-height: 1.4;
+    }
+
+    /* FLOATING ACTION / SCROLL TO TOP */
+    .btn-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      z-index: 30;
+      transition: all 0.2s ease;
+    }
+    .btn-top:active {
+      transform: scale(0.9);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <div class="hero-badge">Colección de Barra & Coctelería</div>
+    <h1 class="hero-title">50 Cócteles Explicados Paso a Paso</h1>
+    <p class="hero-subtitle">
+      Guía visual interactiva de bolsillo: clásicos legendarios, iconos de la barra española y combinados contemporáneos con medidas exactas y trucos profesionales.
+    </p>
+
+    <div class="hero-actions">
+      <a href="50_cocteles_explicados_paso_a_paso.pdf" class="btn btn-gold" download>
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"></path></svg>
+        Descargar Libro PDF (55 Páginas)
+      </a>
+      <button class="btn btn-glass" onclick="openGuideModal()">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4m0-4h.01"></path></svg>
+        Técnicas y Cristal
+      </button>
+    </div>
+  </header>
+
+  <!-- CONTROLES ADHERENTES (STICKY SEARCH & FILTERS) -->
+  <div class="sticky-controls">
+    <div class="controls-inner">
+      <!-- BUSCADOR -->
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Buscar por nombre, ingrediente (tequila, ron, limón...)" autocomplete="off">
+        <button id="searchClear" class="search-clear" onclick="clearSearch()">&times;</button>
+      </div>
+
+      <!-- FILTROS POR CATEGORÍA -->
+      <div class="chips-scroller" id="categoryChips">
+        <button class="chip active" data-filter="all">Todos (50)</button>
+        <button class="chip" data-filter="spanish">🇪🇸 Españoles (10)</button>
+        <button class="chip" data-filter="sin-alcohol">🌿 Sin alcohol</button>
+        <button class="chip" data-filter="Aperitivos & Spritz">Aperitivos</button>
+        <button class="chip" data-filter="Cítricos & Sours">Sours</button>
+        <button class="chip" data-filter="Cava & Brunch">Cava & Brunch</button>
+        <button class="chip" data-filter="Tragos Largos & Tropicales">Tropicales</button>
+        <button class="chip" data-filter="Clásicos & Sobremesa">Clásicos</button>
+      </div>
+
+      <!-- FILTROS POR DESTILADO BASE -->
+      <div class="chips-scroller" id="spiritChips">
+        <button class="chip active" data-spirit="all">Cualquier base</button>
+        <button class="chip" data-spirit="ginebra">Ginebra</button>
+        <button class="chip" data-spirit="ron">Ron</button>
+        <button class="chip" data-spirit="vodka">Vodka</button>
+        <button class="chip" data-spirit="tequila">Tequila</button>
+        <button class="chip" data-spirit="whisky">Whisky</button>
+        <button class="chip" data-spirit="vermut-vinos">Vermut & Vino</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BARRA DE RESULTADOS -->
+  <div class="stats-bar">
+    <span id="resultsCount">Mostrando 50 recetas</span>
+    <span>Toca cualquier cóctel para ver la receta</span>
+  </div>
+
+  <!-- CONTENEDOR DE CÓCTELES -->
+  <main class="cocktails-container">
+    <div class="cocktails-grid" id="cocktailsGrid">
+      <!-- Se inyecta dinámicamente con JavaScript -->
+    </div>
+
+    <!-- MENSAJE SIN RESULTADOS -->
+    <div class="no-results" id="noResults">
+      <h3>No se encontraron cócteles</h3>
+      <p>Prueba con otro ingrediente, nombre o limpia los filtros.</p>
+      <button class="btn btn-gold" style="margin-top:1rem;" onclick="resetAllFilters()">Mostrar todos los cócteles</button>
+    </div>
+  </main>
+
+  <!-- BOTÓN VOLVER ARRIBA -->
+  <button class="btn-top" id="btnTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"></path></svg>
+  </button>
+
+  <!-- MODAL / BOTTOM SHEET DE RECETA DETALLADA -->
+  <div class="modal-backdrop" id="recipeModal" onclick="closeRecipeModal(event)">
+    <div class="modal-sheet" id="modalSheet" onclick="event.stopPropagation()">
+      <div class="modal-hero">
+        <img id="mImg" class="modal-hero-img" src="" alt="">
+        <div class="modal-hero-gradient"></div>
+        <button class="modal-close-btn" onclick="closeRecipeModal()">&times;</button>
+        
+        <div class="modal-header-content">
+          <div class="modal-badge-row">
+            <span id="mNum" class="card-num">#00</span>
+            <span id="mBadge" class="card-badge">CLÁSICO</span>
+          </div>
+          <h2 id="mTitle" class="modal-title">Nombre del Cóctel</h2>
+          <div id="mSubtitle" class="modal-subtitle">Perfil de sabor</div>
+        </div>
+      </div>
+
+      <div class="modal-content-area">
+        <!-- SPECS BAR -->
+        <div class="modal-specs-grid">
+          <div class="modal-spec-cell">
+            <div class="lbl">Copa</div>
+            <div class="val" id="mGlass">-</div>
+          </div>
+          <div class="modal-spec-cell">
+            <div class="lbl">Método</div>
+            <div class="val" id="mMethod">-</div>
+          </div>
+          <div class="modal-spec-cell">
+            <div class="lbl">Hielo</div>
+            <div class="val" id="mIce">-</div>
+          </div>
+          <div class="modal-spec-cell">
+            <div class="lbl">Tiempo</div>
+            <div class="val" id="mTime">-</div>
+          </div>
+        </div>
+
+        <!-- INGREDIENTES CON CHECKBOXES -->
+        <div class="modal-section-title">
+          <span>Ingredientes exactos</span>
+          <span style="font-size:0.7rem; font-weight:normal; color:var(--text-muted); text-transform:none;">(marca según añadas)</span>
+        </div>
+        <ul class="checklist" id="mIngredients">
+          <!-- Dinámico -->
+        </ul>
+
+        <!-- PASOS NUMERADOS -->
+        <div class="modal-section-title">Preparación paso a paso</div>
+        <ol class="steps-list" id="mSteps">
+          <!-- Dinámico -->
+        </ol>
+
+        <!-- CONSEJO DEL BARTENDER -->
+        <div class="bartender-box">
+          <div class="bartender-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+            Consejo del bartender
+          </div>
+          <div class="bartender-text" id="mTip">-</div>
+        </div>
+
+        <!-- ACCIONES COMPARTIR / CERRAR -->
+        <div class="modal-footer-actions">
+          <button class="btn btn-gold" style="flex:1;" onclick="shareCocktail()">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8m-4-6l-4-4-4 4m4-4v13"></path></svg>
+            Compartir receta
+          </button>
+          <button class="btn btn-glass" onclick="closeRecipeModal()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE GUÍA Y TÉCNICAS BÁSICAS -->
+  <div class="modal-backdrop" id="guideModal" onclick="closeGuideModal(event)">
+    <div class="modal-sheet" style="max-width: 600px;" onclick="event.stopPropagation()">
+      <div style="padding: 1.5rem 1.5rem 0.5rem; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle);">
+        <h3 style="font-family:'Cinzel',serif; font-size:1.3rem; color:#ffffff;">Guía Básica del Bartender</h3>
+        <button class="modal-close-btn" style="position:static;" onclick="closeGuideModal()">&times;</button>
+      </div>
+      <div class="guide-modal-body">
+        <div class="guide-box">
+          <strong>1. El Hielo no es un adorno</strong>
+          <p>Usa siempre hielo abundante, limpio y macizo. Cuanto más hielo tenga la copa, menor será la dilución indeseada y más frío y equilibrado se mantendrá el trago.</p>
+        </div>
+        <div class="guide-box">
+          <strong>2. Agitado en coctelera (Shake)</strong>
+          <p>Imprescindible para cócteles con zumos cítricos, siropes o cremas (Margarita, Daiquiri, Pisco sour). Emulsiona los ingredientes y aporta microburbujas sedosas.</p>
+        </div>
+        <div class="guide-box">
+          <strong>3. Refrescado en vaso mezclador (Stir)</strong>
+          <p>Para bebidas de alcoholes puros y vermuts (Negroni, Manhattan, Dry Martini). Remueve con cuchara imperial durante 25-30 segundos para enfriar sin enturbiar el líquido.</p>
+        </div>
+        <div class="guide-box">
+          <strong>4. Construido directo en copa (Build)</strong>
+          <p>Para tragos efervescentes y combinados (Gin-tonic, Aperol spritz, Mojito). Preserva la fuerza del carbónico con removidos muy suaves.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA & SCRIPTS -->
+  <script>
+    const COCKTAILS_DATA = [{"num": 1, "key": "gin_tonic", "nombre": "Gin-tonic", "sin_alcohol": false, "base_alcohol": "Ginebra", "metodo": "Construido en copa", "cristaleria": "Copa balón", "tiempo_min": 3, "perfil_sabor": "Cítrico, botánico y refrescante", "hielo": "Cubos macizos de gran tamaño", "ingredientes": ["50 ml de ginebra (estilo London Dry o botánica)", "200 ml de tónica neutra o premium muy fría", "1 espiral (twist) de piel de lima o limón", "Hielo abundante de cubos gruesos"], "preparacion": ["Llena la copa balón hasta arriba con cubos de hielo macizo y remueve suavemente con la cuchara imperial para enfriar el cristal. Desecha el agua residual.", "Vierte con precisión los 50 ml de ginebra sobre el hielo para que se oxigene y atempere.", "Añade la tónica vertiéndola lentamente y muy pegada al hielo (o deslizándola por la espiral de la cuchara) para conservar la máxima efervescencia de la burbuja.", "Remueve una sola vez de abajo hacia arriba con delicadeza.", "Frota la piel del cítrico por el borde de la copa para liberar sus aceites esenciales y deposítala dentro."], "consejo_bartender": "La clave del gin-tonic perfecto no es el adorno, sino la temperatura y el hielo: jamás machaques la fruta dentro ni uses tónica a temperatura ambiente, pues desgasifica la copa al instante.", "section": "Aperitivos & Spritz", "is_spanish": true, "liquor_group": "ginebra", "image_url": "images/01_gin_tonic.jpg"}, {"num": 2, "key": "mojito", "nombre": "Mojito", "sin_alcohol": false, "base_alcohol": "Ron blanco", "metodo": "Macerado y construido", "cristaleria": "Vaso alto (collins / highball)", "tiempo_min": 5, "perfil_sabor": "Dulce, herbal y cítrico", "hielo": "Hielo picado (crushed ice)", "ingredientes": ["50 ml de ron blanco cubano", "30 ml de zumo de lima recién exprimido", "2 cucharaditas de azúcar blanco de caña (o 20 ml de jarabe de azúcar)", "8 a 10 hojas de hierbabuena fresca", "60 ml de soda o agua con gas fría", "Ramita de hierbabuena y rueda de lima para decorar"], "preparacion": ["En el fondo del vaso alto, coloca el azúcar y el zumo de lima recién exprimido. Remueve hasta diluir el azúcar.", "Palmada suave a las hojas de hierbabuena entre las manos para despertar los aceites esenciales y añádelas al vaso.", "Presiona la hierbabuena con el mortero muy sutilmente durante 5 segundos; no la rompas ni la tritures para evitar notas amargas.", "Añade el ron blanco y llena el vaso hasta la mitad con hielo picado. Remueve con cuchara imperial para integrar.", "Completa con más hielo picado hasta arriba y corona con la soda fría.", "Decora con una generosa rama de hierbabuena y una rodaja de lima."], "consejo_bartender": "Golpea el manojo de hierbabuena contra el dorso de tu mano justo antes de colocarlo como adorno: el aroma al acercar la copa a la nariz transformará la experiencia del trago.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "ron", "image_url": "images/02_mojito.jpg"}, {"num": 3, "key": "sangria", "nombre": "Sangría tradicional", "sin_alcohol": false, "base_alcohol": "Vino tinto y licor", "metodo": "Macerado y refrescado", "cristaleria": "Copa de vino grande o jarra", "tiempo_min": 10, "perfil_sabor": "Frutal, dulce y especiado", "hielo": "Cubos de hielo grandes", "ingredientes": ["100 ml de vino tinto joven afrutado (Garnacha o Tempranillo)", "15 ml de licor de naranja (tipo triple seco o Cointreau)", "15 ml de brandy español", "20 ml de zumo de naranja natural", "1 cucharadita de azúcar", "30 ml de refresco de naranja o gaseosa", "Fruta fresca troceada (naranja, manzana y melocotón)"], "preparacion": ["En una jarra o copa grande, añade la fruta cortada en dados pequeños junto con el azúcar, el brandy y el licor de naranja.", "Deja macerar la mezcla de 10 a 15 minutos para que la fruta absorba los licores y suelte su jugo natural.", "Vierte el vino tinto y el zumo de naranja recién exprimido. Remueve enérgicamente.", "Añade abundante hielo y finaliza con un toque de gaseosa o refresco de limón/naranja para aportar frescor y vivacidad.", "Sirve procurando que cada copa reciba dados de fruta macerada."], "consejo_bartender": "No uses un vino de baja calidad creyendo que la fruta lo ocultará; elige un tinto joven sin barrica, jugoso y aromático, para que la sangría resulte redonda y equilibrada.", "section": "Aperitivos & Spritz", "is_spanish": true, "liquor_group": "vermut-vinos", "image_url": "images/03_sangria.jpg"}, {"num": 4, "key": "tinto_de_verano", "nombre": "Tinto de verano", "sin_alcohol": false, "base_alcohol": "Vino tinto", "metodo": "Construido en vaso", "cristaleria": "Copa balón o vaso ancho de sidra", "tiempo_min": 2, "perfil_sabor": "Refrescante, ligero y afrutado", "hielo": "Abundante hielo en roca", "ingredientes": ["100 ml de vino tinto joven (Tempranillo o Mencía)", "100 ml de gaseosa tradicional o refresco de limón", "1 rodaja de limón o naranja fresca", "Hielo abundante hasta llenar la copa"], "preparacion": ["Llena generosamente una copa balón o vaso ancho con cubos de hielo de buena densidad.", "Vierte primero el vino tinto hasta la mitad del vaso.", "Añade la misma proporción de gaseosa (para un perfil seco) o refresco de limón (para un perfil cítrico y dulce).", "Mueve suavemente con la cuchara una sola vez de abajo hacia arriba para homogeneizar sin romper la burbuja.", "Introduce una rodaja de limón en el lateral del vaso."], "consejo_bartender": "El secreto de un tinto de verano memorable de taberna es servir tanto el vino como el mezclador extremadamente fríos de la nevera antes de servir sobre el hielo.", "section": "Aperitivos & Spritz", "is_spanish": true, "liquor_group": "vermut-vinos", "image_url": "images/04_tinto_de_verano.jpg"}, {"num": 5, "key": "aperol_spritz", "nombre": "Aperol spritz", "sin_alcohol": false, "base_alcohol": "Aperol y vino espumoso", "metodo": "Construido en copa", "cristaleria": "Copa de vino grande", "tiempo_min": 3, "perfil_sabor": "Agridulce, cítrico y chispeante", "hielo": "Cubos gruesos", "ingredientes": ["60 ml de Aperol", "90 ml de cava brut o prosecco muy frío", "30 ml de soda o agua con gas", "1 rodaja de naranja fresca", "1 aceituna verde manzanilla (opcional, estilo veneciano)"], "preparacion": ["Coloca abundante hielo en una copa grande de vino blanco.", "Sigue la regla veneciana del 3-2-1: vierte primero el cava o prosecco (3 partes / 90 ml).", "Añade el Aperol con un movimiento circular (2 partes / 60 ml) para que comience a teñir la mezcla.", "Termina con un chorrito de soda o sifón (1 parte / 30 ml).", "Integra con un toque de cuchara sin agitar y decora con una media luna de naranja."], "consejo_bartender": "Poner el vino espumoso antes que el licor evita que el Aperol se deposite pesadamente en el fondo, logrando un color naranja brillante y una mezcla perfecta sin perder gas.", "section": "Aperitivos & Spritz", "is_spanish": false, "liquor_group": "vermut-vinos", "image_url": "images/05_aperol_spritz.jpg"}, {"num": 6, "key": "agua_de_valencia", "nombre": "Agua de Valencia", "sin_alcohol": false, "base_alcohol": "Cava, ginebra y vodka", "metodo": "Construido y refrescado", "cristaleria": "Copa de cóctel o copa de champán", "tiempo_min": 5, "perfil_sabor": "Cítrico, dulce y potente", "hielo": "Cubos de hielo en jarra", "ingredientes": ["100 ml de zumo de naranja natural recién exprimido y colado", "100 ml de cava brut bien frío", "25 ml de ginebra", "25 ml de vodka", "1 cucharadita de azúcar blanco (opcional, al gusto)"], "preparacion": ["Exprime naranjas frescas de temporada y cuela el zumo para eliminar la pulpa gruesa.", "En una jarra con hielo (o directamente en vaso mezclador), vierte el zumo de naranja, la ginebra y el vodka. Añade el azúcar y remueve hasta disolver.", "Incorpora el cava lentamente para no generar exceso de espuma.", "Remueve con calma usando una cuchara larga.", "Sirve en copas frías decorando con una fina rodaja de naranja."], "consejo_bartender": "Jamás utilices zumo industrial envasado; el alma auténtica de este cóctel creado en la Cervecería Madrid de Valencia en 1959 reside en la acidez y frescura de la naranja natural recién exprimida.", "section": "Cava & Brunch", "is_spanish": true, "liquor_group": "ginebra", "image_url": "images/06_agua_de_valencia.jpg"}, {"num": 7, "key": "rebujito", "nombre": "Rebujito", "sin_alcohol": false, "base_alcohol": "Vino fino o manzanilla", "metodo": "Construido en vaso", "cristaleria": "Vaso de tubo o copa ancha", "tiempo_min": 2, "perfil_sabor": "Seco, herbal y muy refrescante", "hielo": "Abundante hielo macizo", "ingredientes": ["60 ml de vino Manzanilla de Sanlúcar o Fino de Jerez", "120 ml de refresco de lima-limón (tipo Sprite o Seven Up)", "2 ramitas de hierbabuena fresca", "Hielo abundante"], "preparacion": ["Llena el vaso con hielo compacto hasta el borde.", "Vierte el vino fino o manzanilla.", "Añade el refresco de lima-limón suavemente, manteniendo una proporción aproximada de 1 parte de vino por 2 de refresco.", "Introduce unas hojas de hierbabuena en el vaso, golpeándolas previamente para abrir su aroma.", "Remueve sutilmente una sola vez."], "consejo_bartender": "La hierbabuena no se machaca: se introduce entera entre los hielos. Esto aromatiza cada sorbo sin amargar el final seco y salino de la manzanilla.", "section": "Aperitivos & Spritz", "is_spanish": true, "liquor_group": "vermut-vinos", "image_url": "images/07_rebujito.jpg"}, {"num": 8, "key": "negroni", "nombre": "Negroni", "sin_alcohol": false, "base_alcohol": "Ginebra, vermut rojo y Campari", "metodo": "Refrescado (removido)", "cristaleria": "Vaso bajo (old fashioned / rocks)", "tiempo_min": 3, "perfil_sabor": "Amargo, herbal y equilibrado", "hielo": "Un cubo grande y macizo", "ingredientes": ["30 ml de ginebra seca", "30 ml de Campari (bitter rojo)", "30 ml de vermut rojo dulce (dulce de buena calidad)", "1 media luna o piel de naranja fresca"], "preparacion": ["Coloca hielo abundante en un vaso mezclador o directamente en el vaso bajo de servicio con un gran cubo de hielo.", "Añade a partes iguales la ginebra, el Campari y el vermut rojo.", "Remueve con la cuchara de bar durante unos 20 a 30 segundos para enfriar e integrar los tres licores permitiendo la dilución justa.", "Si usaste vaso mezclador, cuela sobre el vaso bajo con hielo nuevo.", "Exprime la piel de naranja sobre la superficie del cóctel para perfumar y deposítala dentro."], "consejo_bartender": "La regla de oro del Negroni es la precisión matemática: proporciones 1:1:1 idénticas y un hielo de alta densidad que no agüe prematuramente la complejidad amarga del trago.", "section": "Aperitivos & Spritz", "is_spanish": false, "liquor_group": "ginebra", "image_url": "images/08_negroni.jpg"}, {"num": 9, "key": "margarita", "nombre": "Margarita", "sin_alcohol": false, "base_alcohol": "Tequila blanco o reposado", "metodo": "Agitado simple (shake)", "cristaleria": "Copa coupette o copa margarita", "tiempo_min": 4, "perfil_sabor": "Cítrico, salino y vibrante", "hielo": "Hielo en cubos para la coctelera", "ingredientes": ["50 ml de tequila 100% agave", "25 ml de licor de naranja (Cointreau o triple seco)", "25 ml de zumo de lima recién exprimido", "5 ml de jarabe de agave o azúcar (opcional, para equilibrar)", "Sal fina para el borde de la copa", "1 rodaja de lima para decorar"], "preparacion": ["Pasa media lima por el borde exterior de la copa y apóyala sobre un plato con sal fina para crear un escarchado fino solo por la mitad del reborde.", "Llena la coctelera con hielo abundante.", "Añade el tequila, el licor de naranja y el zumo de lima colado.", "Cierra la coctelera y agita enérgicamente durante 12 a 15 segundos hasta que el metal esté escarchado por fuera.", "Realiza un colado simple o doble colado vertiendo el líquido frío en la copa preparada.", "Adorna con una rodaja de lima en el borde no salado."], "consejo_bartender": "Escarba solo la mitad del borde de la copa con sal; de este modo quien lo bebe puede elegir cuándo alternar tragos con o sin toque salino según su preferencia.", "section": "Cítricos & Sours", "is_spanish": false, "liquor_group": "tequila", "image_url": "images/09_margarita.jpg"}, {"num": 10, "key": "daiquiri", "nombre": "Daiquiri clásico", "sin_alcohol": false, "base_alcohol": "Ron blanco", "metodo": "Agitado simple (shake)", "cristaleria": "Copa cóctel (coupette o martini)", "tiempo_min": 3, "perfil_sabor": "Cítrico, seco y aterciopelado", "hielo": "Cubos para coctelera", "ingredientes": ["50 ml de ron blanco ligero", "25 ml de zumo de lima recién exprimido y filtrado", "15 ml de jarabe simple de azúcar (proporción 1:1)", "1 rueda fina de lima para decorar"], "preparacion": ["Enfría previamente la copa coupette llenándola de hielo mientras preparas el cóctel.", "En la coctelera, vierte el ron blanco, el zumo de lima fresco y el jarabe de azúcar.", "Llena la coctelera de cubos de hielo hasta tres cuartas partes.", "Bate con fuerza y ritmo durante 12 segundos.", "Descarta el hielo de la copa para que esté bien helada.", "Cuela el cóctel a través de un colador fino (doble colado) para atrapar pequeñas esquirlas de hielo.", "Decora con una rueda flotante de lima."], "consejo_bartender": "El Daiquiri es la prueba del algodón del bartender: si el zumo de lima no está recién exprimido del día, el equilibrio entre el dulce y el ron se arruina por completo.", "section": "Cítricos & Sours", "is_spanish": false, "liquor_group": "ron", "image_url": "images/10_daiquiri.jpg"}, {"num": 11, "key": "marianito", "nombre": "Marianito (vermut preparado)", "sin_alcohol": false, "base_alcohol": "Vermut rojo", "metodo": "Refrescado en vaso", "cristaleria": "Vaso bajo o copa de vermut", "tiempo_min": 2, "perfil_sabor": "Herbal, especiado y con final seco", "hielo": "Dos cubos macizos", "ingredientes": ["60 ml de vermut rojo tradicional", "15 ml de ginebra seca", "5 ml de Campari o bitter rojo", "2 gotas de bitter Angostura", "Un toque de sifón o soda (opcional)", "1 aceituna rellena y 1 rodaja de naranja"], "preparacion": ["Coloca dos buenos cubos de hielo en el vaso bajo.", "Añade el vermut rojo, la ginebra, el Campari y las gotas de Angostura.", "Remueve con suavidad durante 10 segundos con la cuchara para aclimatar y amalgamar los ingredientes.", "Si deseas aligerarlo, añade un golpe breve de sifón o soda fría.", "Remata con una aceituna ensartada en palillo y media rodaja de naranja."], "consejo_bartender": "El Marianito es el rey del aperitivo en el norte de España: la ginebra le aporta nervio y estructura al vermut sin enmascarar sus botánicos artesanales.", "section": "Aperitivos & Spritz", "is_spanish": true, "liquor_group": "vermut-vinos", "image_url": "images/11_marianito.jpg"}, {"num": 12, "key": "pina_colada", "nombre": "Piña colada", "sin_alcohol": false, "base_alcohol": "Ron blanco", "metodo": "Agitado enérgico o batido", "cristaleria": "Copa huracán o vaso alto", "tiempo_min": 4, "perfil_sabor": "Tropical, cremoso y dulce", "hielo": "Hielo picado o cubos", "ingredientes": ["50 ml de ron blanco", "50 ml de crema o leche de coco espesa", "100 ml de zumo de piña natural (sin azúcares añadidos)", "10 ml de zumo de lima fresca (toque de balance)", "Triángulo de piña fresca y cereza al marrasquino"], "preparacion": ["Coloca el ron blanco, la crema de coco, el zumo de piña y el zumo de lima en una coctelera con mucho hielo picado (o en batidora eléctrica).", "Agita con intensidad durante 20 segundos hasta que la textura emulsione y gane cuerpo cremoso y sedoso.", "Vierte todo el contenido sin colar (con el hielo) en una copa tipo huracán.", "Coloca en el borde una cuña de piña fresca y una cereza de cóctel."], "consejo_bartender": "Añade siempre un chorrito diminuto (10 ml) de zumo de lima: la acidez natural corta la pesadez de la crema de coco y equilibra el dulzor haciéndola mucho más bebible.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "ron", "image_url": "images/12_pina_colada.jpg"}, {"num": 13, "key": "espresso_martini", "nombre": "Espresso martini", "sin_alcohol": false, "base_alcohol": "Vodka y licor de café", "metodo": "Agitado enérgico (shake)", "cristaleria": "Copa coupette o martini", "tiempo_min": 4, "perfil_sabor": "Tostado, café expreso y dulce sedoso", "hielo": "Cubos grandes y secos", "ingredientes": ["50 ml de vodka", "30 ml de licor de café (tipo Kahlúa o Tía María)", "30 ml de café expreso recién hecho (caliente o templado)", "10 ml de jarabe de azúcar (ajustar según el gusto)", "3 granos de café tostado para coronar"], "preparacion": ["Prepara un café expreso corto e intenso en cafetera italiana o de espresso.", "Llena la coctelera con abundante hielo macizo.", "Vierte de inmediato el vodka, el licor de café, el jarabe y el café expreso.", "Agita con máxima energía durante 15 segundos: el contraste térmico y la presión formarán una espuma cremosa inconfundible.", "Cuela rápidamente con colador fino sobre la copa helada.", "Coloca suavemente tres granos de café sobre la espuma en el centro."], "consejo_bartender": "Los tres granos de café sobre la espuma simbolizan la salud, la riqueza y la felicidad según la tradición de la hospitalidad italiana. Agita con fuerza para crear la densa crema que los sostiene a flote.", "section": "Clásicos & Sobremesa", "is_spanish": false, "liquor_group": "vodka", "image_url": "images/13_espresso_martini.jpg"}, {"num": 14, "key": "moscow_mule", "nombre": "Moscow mule", "sin_alcohol": false, "base_alcohol": "Vodka", "metodo": "Construido en vaso", "cristaleria": "Jarra de cobre o vaso bajo", "tiempo_min": 3, "perfil_sabor": "Picante de jengibre, fresco y cítrico", "hielo": "Hielo picado abundante", "ingredientes": ["50 ml de vodka", "15 ml de zumo de lima fresca", "120 ml de cerveza de jengibre (ginger beer con gas)", "1 rodaja de lima", "1 ramita de menta fresca"], "preparacion": ["Llena la emblemática jarra de cobre con hielo picado hasta el borde.", "Añade el vodka y el zumo de lima recién exprimido.", "Rellena con la cerveza de jengibre fría vertiéndola suavemente.", "Remueve con un movimiento delicado de abajo hacia arriba para unificar.", "Añade un poco más de hielo picado para formar un pequeño volcán y decora con la ramita de menta y la rodaja de lima."], "consejo_bartender": "Usa siempre cerveza de jengibre fermentada ('ginger beer') y no refresco suave ('ginger ale'); el picante característico de la raíz de jengibre es la esencia de este trago.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "vodka", "image_url": "images/14_moscow_mule.jpg"}, {"num": 15, "key": "caipirinha", "nombre": "Caipiriña", "sin_alcohol": false, "base_alcohol": "Cachaça", "metodo": "Macerado y construido", "cristaleria": "Vaso bajo (old fashioned)", "tiempo_min": 4, "perfil_sabor": "Rústico, cítrico y dulce", "hielo": "Hielo picado o cubos medianos", "ingredientes": ["60 ml de cachaça brasileña", "1 lima entera madura", "2 cucharadas de azúcar blanco de caña", "Hielo picado abundante"], "preparacion": ["Lava la lima, retira los dos extremos y el nervio blanco central (columela) para evitar amargor.", "Corta la lima en 8 trozos o dados y colócala en el fondo del vaso bajo con la piel hacia abajo.", "Añade las 2 cucharadas de azúcar por encima de la fruta.", "Machaqua con el mortero firmemente pero sin desgarrar la piel exterior, extrayendo el zumo y disolviéndolo con el azúcar.", "Llena el vaso con hielo picado hasta desbordar ligeramente.", "Vierte la cachaça por encima y remueve bien de abajo a arriba con la cuchara para que el azúcar se reparta uniformemente."], "consejo_bartender": "Retirar la médula blanca del interior de la lima es el paso que separa una caipiriña amateur y amarga de una auténtica delicia brasileña de coctelería.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "ron", "image_url": "images/15_caipirinha.jpg"}, {"num": 16, "key": "cuba_libre", "nombre": "Cuba libre", "sin_alcohol": false, "base_alcohol": "Ron añejo o dorado", "metodo": "Construido en vaso", "cristaleria": "Vaso alto (highball)", "tiempo_min": 2, "perfil_sabor": "Acaramelado, avainillado y cítrico", "hielo": "Cubos macizos hasta el tope", "ingredientes": ["50 ml de ron dorado o añejo de calidad", "120 ml de refresco de cola frío", "15 ml de zumo de lima fresca recién exprimido", "2 gajos de lima", "Hielo abundante"], "preparacion": ["Llena el vaso de tubo o highball por completo con cubos de hielo de gran tamaño.", "Exprime un gajo de lima directamente sobre el hielo y echa el zumo (unos 15 ml).", "Vierte el ron dorado.", "Añade el refresco de cola despacio inclinando ligeramente el vaso para no malgastar el gas carbónico.", "Remueve una sola vez e introduce el segundo gajo de lima dentro del vaso."], "consejo_bartender": "Un 'Cuba libre' no es un simple ron-cola: el zumo de lima fresco exprimido en directo es indispensable para cortar el dulzor del caramelo del refresco.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "ron", "image_url": "images/16_cuba_libre.jpg"}, {"num": 17, "key": "tom_collins", "nombre": "Tom Collins", "sin_alcohol": false, "base_alcohol": "Ginebra", "metodo": "Construido en vaso", "cristaleria": "Vaso alto (collins)", "tiempo_min": 3, "perfil_sabor": "Limonada chispeante y botánica", "hielo": "Cubos alargados o macizos", "ingredientes": ["50 ml de ginebra (estilo London Dry u Old Tom)", "30 ml de zumo de limón recién exprimido", "20 ml de jarabe de azúcar simple", "60 ml de soda o agua con gas", "1 rodaja de limón y una cereza de cóctel"], "preparacion": ["En el vaso Collins, vierte la ginebra, el zumo de limón colado y el jarabe simple.", "Remueve con la cuchara para mezclar la base agridulce.", "Rellena el vaso con cubos de hielo hasta el tope.", "Completa con la soda bien fría.", "Realiza un suave movimiento vertical con la cuchara para levantar la mezcla.", "Adorna con una rodaja de limón insertada y una guinda marrasquino."], "consejo_bartender": "Es la madre de los tragos largos con ginebra: piensa en él como en una limonada casera para adultos extremadamente chispeante y refrescante.", "section": "Cava & Brunch", "is_spanish": false, "liquor_group": "ginebra", "image_url": "images/17_tom_collins.jpg"}, {"num": 18, "key": "dry_martini", "nombre": "Dry martini", "sin_alcohol": false, "base_alcohol": "Ginebra y vermut seco", "metodo": "Refrescado (removido)", "cristaleria": "Copa de cóctel clásica (martini)", "tiempo_min": 3, "perfil_sabor": "Seco, limpio, mineral y potente", "hielo": "Cubos macizos en vaso mezclador", "ingredientes": ["60 ml de ginebra London Dry de primera calidad", "10 ml de vermut blanco seco (tipo Noilly Prat)", "1 aceituna verde sin hueso o un twist de corteza de limón"], "preparacion": ["Asegúrate de que la copa cónica esté congelada teniéndola en el congelador 15 minutos antes.", "Llena el vaso mezclador con hielo abundante y compacto.", "Vierte el vermut seco y la ginebra.", "Remueve con suavidad y fluidez durante 30 segundos continuos para enfriar a temperaturas bajo cero sin crear burbujas de aire.", "Cuela con el colador gusanillo en la copa martini helada.", "Añade una aceituna pinchada en una brocheta o retuerce una piel de limón sobre la superficie para aromatizar con sus aceites."], "consejo_bartender": "Nunca lo batas en coctelera a menos que te lo pida James Bond: el agitado enturbia el líquido y llena de astillas de hielo un cóctel cuya belleza reside en su transparencia cristalina.", "section": "Clásicos & Sobremesa", "is_spanish": false, "liquor_group": "ginebra", "image_url": "images/18_dry_martini.jpg"}, {"num": 19, "key": "paloma", "nombre": "Paloma", "sin_alcohol": false, "base_alcohol": "Tequila blanco", "metodo": "Construido en vaso", "cristaleria": "Vaso alto con borde escarchado", "tiempo_min": 3, "perfil_sabor": "Cítrico, pomelo amargo y salino", "hielo": "Cubos de hielo grandes", "ingredientes": ["50 ml de tequila blanco 100% agave", "15 ml de zumo de lima fresca", "100 ml de refresco de pomelo rosado (o zumo de pomelo con toque de soda)", "1 pizca de sal marina", "1 gajo de pomelo rosado para decorar"], "preparacion": ["Pasa un gajo de lima por la mitad del borde del vaso y pásalo por sal gruesa o sal con chile.", "Llena el vaso con cubos de hielo.", "Vierte el tequila blanco, el zumo de lima y añade una pequeña pizca de sal dentro.", "Completa con el refresco de pomelo frío hasta el borde.", "Remueve delicadamente para integrar.", "Decora con un gajo de pomelo rosado encajado en el borde."], "consejo_bartender": "La sal no es solo para el borde: añadir una micro-pizca disuelta dentro potencia la dulzura del pomelo y neutraliza el exceso de amargor cítrico.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "tequila", "image_url": "images/19_paloma.jpg"}, {"num": 20, "key": "old_fashioned", "nombre": "Old fashioned", "sin_alcohol": false, "base_alcohol": "Bourbon o whisky de centeno", "metodo": "Construido y refrescado", "cristaleria": "Vaso bajo (old fashioned / rocks)", "tiempo_min": 4, "perfil_sabor": "Amaderado, dulce sutil y aromático", "hielo": "Una gran roca o esfera de hielo", "ingredientes": ["60 ml de bourbon o rye whiskey", "1 terrón de azúcar blanco (o 5 ml de jarabe simple)", "3 golpes de amargo de Angostura", "1 cucharadita de agua con gas o soda", "Piel de naranja fresca y cereza al marrasquino"], "preparacion": ["En el vaso bajo, coloca el terrón de azúcar y empápalo con los 3 golpes de Angostura y la cucharadita de soda.", "Con la cuchara o el mortero, disuelve por completo el azúcar hasta formar una pasta homogénea.", "Coloca una roca de hielo grande y compacta en el centro del vaso.", "Vierte la mitad del whisky (30 ml) y remueve durante 15 segundos con la cuchara imperial.", "Añade los otros 30 ml de whisky y vuelve a remover otros 15 segundos para lograr la dilución perfecta.", "Retuerce la piel de naranja sobre el vaso liberando su aceite cítrico y añádela como guarnición."], "consejo_bartender": "La paciencia al remover es el alma del Old fashioned: no bebas deprisa, este cóctel evoluciona sorbo a sorbo a medida que el hielo se funde lentamente.", "section": "Clásicos & Sobremesa", "is_spanish": false, "liquor_group": "whisky", "image_url": "images/20_old_fashioned.jpg"}, {"num": 21, "key": "manhattan", "nombre": "Manhattan", "sin_alcohol": false, "base_alcohol": "Whisky de centeno y vermut rojo", "metodo": "Refrescado (removido)", "cristaleria": "Copa cóctel (coupette o martini)", "tiempo_min": 3, "perfil_sabor": "Rico, especiado, licoroso y herbal", "hielo": "Cubos macizos en vaso mezclador", "ingredientes": ["50 ml de whisky de centeno (Rye) o bourbon", "25 ml de vermut rojo dulce italiano", "2 golpes de bitter Angostura", "1 cereza al marrasquino de calidad para decorar"], "preparacion": ["Coloca hielo abundante en el vaso mezclador.", "Vierte el whisky, el vermut dulce y los golpes de Angostura.", "Remueve enérgicamente con la cuchara de bar durante unos 25 segundos para alcanzar una temperatura helada y textura sedosa.", "Cuela con el gusanillo directamente en una copa de cóctel previamente enfriada.", "Deposita una guinda o cereza amarena en el fondo de la copa."], "consejo_bartender": "Prefiere siempre un whisky de centeno (Rye): sus notas de pimienta y cereal seco contrastan de maravilla con el azúcar especiado del vermut rojo.", "section": "Clásicos & Sobremesa", "is_spanish": false, "liquor_group": "whisky", "image_url": "images/21_manhattan.jpg"}, {"num": 22, "key": "whisky_sour", "nombre": "Whisky sour", "sin_alcohol": false, "base_alcohol": "Bourbon o whisky escocés", "metodo": "Agitado simple (shake)", "cristaleria": "Vaso bajo (rocks) o copa coupette", "tiempo_min": 4, "perfil_sabor": "Cítrico, sedoso y avainillado", "hielo": "Cubos en coctelera y vaso", "ingredientes": ["50 ml de whisky bourbon", "25 ml de zumo de limón recién exprimido y colado", "20 ml de jarabe de azúcar simple", "15 ml de clara de huevo o albúmina (opcional, para espuma sedosa)", "1 rodaja de naranja y 1 cereza de cóctel"], "preparacion": ["Si usas clara de huevo, haz primero un 'dry shake': agita en la coctelera todos los ingredientes sin hielo durante 10 segundos para espumar.", "Añade hielo abundante a la coctelera.", "Vuelve a agitar enérgicamente durante otros 12 a 15 segundos para enfriar.", "Cuela sobre un vaso bajo con un cubo de hielo grande (o en copa coupette helada sin hielo).", "Decora con una rodaja de naranja y dos gotas de angostura sobre la crema blanca."], "consejo_bartender": "La clara de huevo no aporta sabor a huevo: actúa como un emulsionante molecular que otorga una textura cremosa inigualable que suaviza la fuerza del destilado.", "section": "Cítricos & Sours", "is_spanish": false, "liquor_group": "whisky", "image_url": "images/22_whisky_sour.jpg"}, {"num": 23, "key": "cosmopolitan", "nombre": "Cosmopolitan", "sin_alcohol": false, "base_alcohol": "Vodka cítrico y triple seco", "metodo": "Agitado simple (shake)", "cristaleria": "Copa cóctel (martini)", "tiempo_min": 3, "perfil_sabor": "Frutos rojos, cítrico y seco", "hielo": "Hielo en cubos para agitar", "ingredientes": ["40 ml de vodka al limón (citron) o vodka neutro", "20 ml de licor de naranja (Cointreau o triple seco)", "20 ml de zumo de arándanos rojos (cranberry)", "15 ml de zumo de lima fresca", "1 twist de piel de naranja o lima"], "preparacion": ["Enfría la copa martini con hielo o manteniéndola en el congelador.", "En la coctelera con hielo, vierte el vodka, el licor de naranja, el zumo de arándanos y el zumo de lima.", "Agita intensamente durante 12 segundos.", "Desecha el hielo de la copa y cuela con doble colador para retener cristales de hielo flotantes.", "Flamea levemente o retuerce la piel de naranja sobre la superficie para aromatizar la copa."], "consejo_bartender": "El color debe ser de un rosa pálido y translúcido muy elegante, no un rojo intenso opaco; no te excedas con el zumo de arándanos para respetar el balance seco de la lima.", "section": "Cítricos & Sours", "is_spanish": false, "liquor_group": "vodka", "image_url": "images/23_cosmopolitan.jpg"}, {"num": 24, "key": "san_francisco", "nombre": "San Francisco", "sin_alcohol": true, "base_alcohol": "Sin alcohol (0,0%)", "metodo": "Agitado enérgico (shake)", "cristaleria": "Vaso alto (highball) escarchado", "tiempo_min": 4, "perfil_sabor": "Frutal, dulce, cítrico y tropical", "hielo": "Cubos de hielo", "ingredientes": ["40 ml de zumo de naranja natural", "30 ml de zumo de limón recién exprimido", "30 ml de zumo de piña natural", "20 ml de zumo de melocotón", "15 ml de sirope de granadina", "Azúcar y granadina para escarchar el borde", "1 rodaja de naranja y 1 cereza"], "preparacion": ["Humedece el borde del vaso con un poco de granadina y pásalo por azúcar para crear un festivo ribete rosado.", "En una coctelera con mucho hielo, introduce los cuatro zumos (naranja, limón, piña y melocotón).", "Agita vigorosamente durante 15 segundos para generar una espuma densa y frutal.", "Llena el vaso escarchado con cubos de hielo frescos y cuela los zumos agitados.", "Vierte despacio la granadina por el centro: al ser más densa, caerá al fondo creando un espectacular efecto bicolor degradado.", "Decora con la rodaja de naranja y una guinda en el borde."], "consejo_bartender": "Es el cóctel sin alcohol más emblemático de la historia hostelera de España: la magia reside en verter la granadina al final sin remover para lucir ese degradado de atardecer.", "section": "Tragos Largos & Tropicales", "is_spanish": true, "liquor_group": "sin-alcohol", "image_url": "images/24_san_francisco.jpg"}, {"num": 25, "key": "bloody_mary", "nombre": "Bloody Mary", "sin_alcohol": false, "base_alcohol": "Vodka y zumo de tomate", "metodo": "Refrescado / escanciado (roll)", "cristaleria": "Vaso alto (highball)", "tiempo_min": 5, "perfil_sabor": "Salado, umami, picante y especiado", "hielo": "Cubos enteros", "ingredientes": ["50 ml de vodka", "100 ml de zumo de tomate de calidad", "15 ml de zumo de limón recién exprimido", "3 golpes de salsa Worcestershire (Perrins)", "2 o 3 gotas de salsa picante Tabasco", "1 pizca de sal de apio y pimienta negra molida", "1 tallo fresco de apio con hojas para remover y decorar"], "preparacion": ["En un vaso alto o mezclador, vierte el zumo de limón, las salsas Worcestershire y Tabasco, la sal de apio y la pimienta.", "Añade el vodka y el zumo de tomate bien frío.", "Agrega cubos de hielo y pásalo suavemente de un vaso a otro dos o tres veces (técnica 'rolling') para oxigenar sin aguar en exceso.", "Sirve en el vaso alto con hielo limpio.", "Introduce el tallo de apio fresco para que sirva tanto de adorno como de agitador natural."], "consejo_bartender": "Nunca agites un Bloody Mary en coctelera como si fuera un margarita: la agitación rompe las fibras del tomate y lo vuelve aguado y espumoso. El método escanciado conserva su textura densa.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "vodka", "image_url": "images/25_bloody_mary.jpg"}, {"num": 26, "key": "cremaet", "nombre": "Carajillo quemado (cremaet)", "sin_alcohol": false, "base_alcohol": "Ron añejo flameado y café", "metodo": "Flameado y servido en capas", "cristaleria": "Vaso pequeño de cristal térmico", "tiempo_min": 6, "perfil_sabor": "Café tostado, canela, cítrico y licoroso", "hielo": "Sin hielo (trago caliente)", "ingredientes": ["40 ml de ron añejo (o brandy)", "1 taza de café expreso corto bien caliente", "2 cucharaditas de azúcar moreno o blanco", "1 ramita pequeña de canela", "1 trozo de piel de limón", "3 granos de café enteros"], "preparacion": ["En el vaso térmico de cristal, coloca el ron, el azúcar, la piel de limón, la canela y los granos de café.", "Calienta la mezcla en el microondas o con el vaporizador de la cafetera hasta que esté muy caliente.", "Prende fuego a la superficie con un encendedor y remueve despacio con una cucharilla metálica durante 1 minuto para quemar parte del alcohol e infusionar los aromas.", "Apaga la llama tapando el vaso con un platillo metálico.", "Extrae un café expreso muy caliente y viértelo lentamente sobre el dorso de la cuchara pegado a la pared del cristal.", "Observa cómo se forman tres capas perfectas: el licor dorado abajo, el café negro en medio y la crema tostada arriba."], "consejo_bartender": "El secreto del trifásico perfecto valenciano es la densidad: el licor dulce caliente es denso y retiene al café arriba si lo dejas caer gota a gota por el cristal.", "section": "Clásicos & Sobremesa", "is_spanish": true, "liquor_group": "ron", "image_url": "images/26_cremaet.jpg"}, {"num": 27, "key": "americano", "nombre": "Americano", "sin_alcohol": false, "base_alcohol": "Campari y vermut rojo", "metodo": "Construido en vaso con soda", "cristaleria": "Vaso bajo (rocks) o vaso medio", "tiempo_min": 2, "perfil_sabor": "Amargo, chispeante y aromático", "hielo": "Cubos macizos", "ingredientes": ["30 ml de Campari", "30 ml de vermut rojo dulce", "60 ml de soda o agua con gas muy fría", "1 rodaja de naranja fresca", "1 piel de limón"], "preparacion": ["Llena el vaso con cubos de hielo hasta el borde.", "Vierte el Campari y el vermut rojo a partes iguales.", "Añade la soda fría para abrir los aromas y reducir la graduación alcohólica.", "Remueve delicadamente de abajo hacia arriba con la cuchara una sola vez.", "Adorna con una rodaja de naranja y exprime la piel de limón sobre la copa."], "consejo_bartender": "Es el hermano ligero del Negroni (inventado antes que este, cuando los turistas estadounidenses pedían suavizar el cóctel Milano-Torino con un toque de soda).", "section": "Aperitivos & Spritz", "is_spanish": false, "liquor_group": "vermut-vinos", "image_url": "images/27_americano.jpg"}, {"num": 28, "key": "pisco_sour", "nombre": "Pisco sour", "sin_alcohol": false, "base_alcohol": "Pisco", "metodo": "Agitado simple (shake)", "cristaleria": "Vaso bajo o copa coupette", "tiempo_min": 4, "perfil_sabor": "Cítrico, floral, potente y sedoso", "hielo": "Cubos para coctelera", "ingredientes": ["60 ml de pisco quebranta o acholado", "30 ml de zumo de lima recién exprimido", "20 ml de jarabe de azúcar simple", "15 ml de clara de huevo", "2 gotas de bitter Angostura para la espuma"], "preparacion": ["Pon en la coctelera el pisco, el zumo de lima, el jarabe y la clara de huevo.", "Agita 10 segundos sin hielo para emulsionar la clara.", "Llena con bastante hielo y vuelve a batir fuertemente durante 15 segundos hasta sentir el frío en las manos.", "Cuela en dos tiempos sobre una copa helada sin hielo.", "Deja reposar 5 segundos para que la espuma blanca y densa suba a la superficie.", "Deja caer dos gotas de Angostura sobre la crema para aromatizar cada trago."], "consejo_bartender": "Las gotas de Angostura en la superficie no son decoración estética: neutralizan el sutil olor inicial de la clara cruda y desprenden un aroma cautivador al beber.", "section": "Cítricos & Sours", "is_spanish": false, "liquor_group": "otros", "image_url": "images/28_pisco_sour.jpg"}, {"num": 29, "key": "bellini", "nombre": "Bellini", "sin_alcohol": false, "base_alcohol": "Cava o prosecco y melocotón", "metodo": "Construido en copa", "cristaleria": "Copa flauta de champán", "tiempo_min": 3, "perfil_sabor": "Dulce, frutal, sedoso y burbujeante", "hielo": "Ingredientes muy fríos sin hielo", "ingredientes": ["50 ml de puré de melocotón blanco natural muy frío", "100 ml de cava brut o prosecco bien frío", "Unas gotas de zumo de limón o granadina (opcional)"], "preparacion": ["Tritura melocotones maduros pelados hasta obtener un puré fino y déjalo enfriar en la nevera.", "Vierte el puré de melocotón en el fondo de una copa flauta fría.", "Añade despacio la mitad del cava espumoso.", "Remueve con la cuchara imperial muy suavemente para disolver el puré con la burbuja.", "Rellena con el resto del cava hasta llenar la copa y sirve de inmediato."], "consejo_bartender": "Creado por Giuseppe Cipriani en el mítico Harry's Bar de Venecia: la clave es que ambos ingredientes estén a punto de congelación para no requerir hielo que agüe el puré.", "section": "Cava & Brunch", "is_spanish": false, "liquor_group": "vermut-vinos", "image_url": "images/29_bellini.jpg"}, {"num": 30, "key": "mimosa", "nombre": "Mimosa", "sin_alcohol": false, "base_alcohol": "Cava o vino espumoso y naranja", "metodo": "Construido en copa", "cristaleria": "Copa flauta de champán", "tiempo_min": 2, "perfil_sabor": "Cítrico, chispeante y refrescante", "hielo": "Sin hielo (bebidas muy frías)", "ingredientes": ["75 ml de zumo de naranja natural recién exprimido y colado", "75 ml de cava brut o champán muy frío", "1 espiral de piel de naranja"], "preparacion": ["Cuela el zumo de naranja natural para retirar cualquier resto de pulpa.", "En una copa flauta inclinada a 45 grados, vierte primero el cava frío hasta la mitad.", "Rellena la otra mitad con el zumo de naranja con un flujo continuo y delicado.", "La propia efervescencia del cava mezclará ambos líquidos sin necesidad de remover.", "Adorna con una fina piel de naranja en el borde."], "consejo_bartender": "Vierte el cava antes del zumo: si viertes el zumo primero, al echar el cava se formará una erupción de espuma volcánica que desbordará la copa y perderá toda la burbuja.", "section": "Cava & Brunch", "is_spanish": false, "liquor_group": "vermut-vinos", "image_url": "images/30_mimosa.jpg"}, {"num": 31, "key": "tequila_sunrise", "nombre": "Tequila sunrise", "sin_alcohol": false, "base_alcohol": "Tequila blanco y naranja", "metodo": "Construido en capas", "cristaleria": "Vaso alto (highball)", "tiempo_min": 3, "perfil_sabor": "Dulce, cítrico y afrutado", "hielo": "Cubos macizos", "ingredientes": ["50 ml de tequila blanco", "100 ml de zumo de naranja natural recién exprimido", "15 ml de sirope de granadina", "1 rodaja de naranja y 1 cereza de cóctel"], "preparacion": ["Llena el vaso alto con cubos de hielo limpios.", "Vierte el tequila blanco y a continuación el zumo de naranja.", "Remueve ligeramente ambos ingredientes para unificarlos en un tono amarillo luminoso.", "Vierte despacio la granadina pegada al borde interior del vaso.", "Deja que repose durante 30 segundos sin remover: la densidad del almíbar formará el icónico amanecer rojo, naranja y dorado.", "Decora con la rodaja de naranja y la cereza ensartadas."], "consejo_bartender": "No caigas en la tentación de removerlo antes de llevarlo a la mesa: el placer visual del Tequila sunrise está en apreciar las capas degradadas antes del primer sorbo.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "tequila", "image_url": "images/31_tequila_sunrise.jpg"}, {"num": 32, "key": "sex_on_the_beach", "nombre": "Sex on the beach", "sin_alcohol": false, "base_alcohol": "Vodka y licor de melocotón", "metodo": "Construido o agitado simple", "cristaleria": "Vaso alto (highball o huracán)", "tiempo_min": 3, "perfil_sabor": "Muy frutal, dulce y tropical", "hielo": "Abundante hielo en roca", "ingredientes": ["40 ml de vodka", "20 ml de licor de melocotón (peach schnapps)", "40 ml de zumo de naranja", "40 ml de zumo de arándanos rojos (cranberry)", "1 rodaja de naranja"], "preparacion": ["Llena el vaso alto con cubos de hielo hasta arriba.", "Vierte el vodka, el licor de melocotón y el zumo de naranja. Remueve.", "Añade despacio por encima el zumo de arándanos para crear un bonito contraste de colores.", "Decora con una rodaja de naranja fresca en el borde del vaso."], "consejo_bartender": "Un clásico indiscutible de las vacaciones estivales en las costas españolas: utiliza siempre zumos de calidad para que no resulte empalagoso.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "vodka", "image_url": "images/32_sex_on_the_beach.jpg"}, {"num": 33, "key": "lumumba", "nombre": "Lumumba", "sin_alcohol": false, "base_alcohol": "Brandy o coñac y batido de cacao", "metodo": "Construido en vaso", "cristaleria": "Vaso de tubo o copa ancha", "tiempo_min": 2, "perfil_sabor": "Chocolateado, cremoso y espirituoso", "hielo": "Cubos gruesos", "ingredientes": ["50 ml de brandy español (tipo Solera Reserva) o coñac", "150 ml de batido de chocolate frío (tipo Cacaolat o similar)", "Cacao en polvo o canela molida para espolvorear", "Hielo abundante"], "preparacion": ["Llena el vaso de tubo con hielo compacto.", "Vierte la dosis de brandy español sobre el hielo.", "Rellena con el batido de chocolate bien frío.", "Remueve con la cuchara imperial hasta lograr un color uniforme de chocolate con leche brillante.", "Espolvorea una pizca sutil de canela o cacao puro por encima."], "consejo_bartender": "Este trago nostálgico de las barras españolas de los años 70 y 80 resurge con fuerza si empleas un buen brandy envejecido en barricas de jerez y batido con alto porcentaje de cacao.", "section": "Clásicos & Sobremesa", "is_spanish": true, "liquor_group": "vermut-vinos", "image_url": "images/33_lumumba.jpg"}, {"num": 34, "key": "gimlet", "nombre": "Gimlet", "sin_alcohol": false, "base_alcohol": "Ginebra y cordial de lima", "metodo": "Agitado o refrescado", "cristaleria": "Copa cóctel (coupette)", "tiempo_min": 3, "perfil_sabor": "Cítrico punzante, botánico y seco", "hielo": "Cubos en coctelera", "ingredientes": ["60 ml de ginebra (estilo London Dry)", "30 ml de cordial de lima (o 20 ml de zumo de lima fresca con 10 ml de almíbar simple)", "1 rodaja de lima para decorar"], "preparacion": ["Enfría la copa cóctel.", "Vierte en la coctelera la ginebra y el cordial o zumo de lima con azúcar.", "Añade hielo abundante y bate con energía durante 12 segundos.", "Cuela con colador de malla fina sobre la copa bien fría.", "Deposita una rueda fina de lima flotando en el centro."], "consejo_bartender": "El Gimlet original naval británico usaba cordial embotellado para combatir el escorbuto en alta mar. En casa, una combinación de zumo de lima fresco y almíbar ofrece un sabor infinitamente más vivo.", "section": "Cítricos & Sours", "is_spanish": false, "liquor_group": "ginebra", "image_url": "images/34_gimlet.jpg"}, {"num": 35, "key": "black_russian", "nombre": "Black Russian", "sin_alcohol": false, "base_alcohol": "Vodka y licor de café", "metodo": "Construido con hielo", "cristaleria": "Vaso bajo (old fashioned / rocks)", "tiempo_min": 2, "perfil_sabor": "Café intenso, dulce y alcohólico", "hielo": "Cubos macizos grandes", "ingredientes": ["50 ml de vodka", "25 ml de licor de café (Kahlúa o licor artesano)", "Hielo abundante en roca"], "preparacion": ["Coloca cubos de hielo grandes en el vaso bajo.", "Vierte primero el vodka.", "Añade a continuación el licor de café.", "Remueve lentamente durante 15 segundos para enfriar e integrar ambos licores.", "Sirve tal cual, sin garnish o con una cereza opcional."], "consejo_bartender": "Un trago directo y robusto perfecto para la sobremesa: con solo dos botellas tienes un clásico nocturno sofisticado e infalible.", "section": "Clásicos & Sobremesa", "is_spanish": false, "liquor_group": "vodka", "image_url": "images/35_black_russian.jpg"}, {"num": 36, "key": "white_russian", "nombre": "White Russian", "sin_alcohol": false, "base_alcohol": "Vodka, licor de café y crema", "metodo": "Construido en capas", "cristaleria": "Vaso bajo (old fashioned / rocks)", "tiempo_min": 3, "perfil_sabor": "Cremoso, café con leche dulce y sedoso", "hielo": "Cubos macizos", "ingredientes": ["50 ml de vodka", "25 ml de licor de café", "30 ml de nata líquida (crema para café o leche evaporada bien fría)", "Hielo en cubos"], "preparacion": ["Llena el vaso bajo con cubos de hielo.", "Vierte el vodka y el licor de café, removiéndolos brevemente.", "Vierte la nata líquida despacio sobre el dorso de una cuchara para que flote en la superficie formando un manto blanco sobre el fondo oscuro.", "Sirve con una pajita corta para que el comensal decida cuándo mezclar las capas."], "consejo_bartender": "Inmortalizado por 'El Nota' en la película El Gran Lebowski: procura que la nata esté semimontada o muy fría para que el efecto visual bicolor permanezca flotando intacto.", "section": "Clásicos & Sobremesa", "is_spanish": false, "liquor_group": "vodka", "image_url": "images/36_white_russian.jpg"}, {"num": 37, "key": "french_75", "nombre": "French 75", "sin_alcohol": false, "base_alcohol": "Ginebra, zumo de limón y cava", "metodo": "Agitado y completado con cava", "cristaleria": "Copa flauta", "tiempo_min": 3, "perfil_sabor": "Cítrico, elegante, seco y efervescente", "hielo": "Cubos para coctelera", "ingredientes": ["30 ml de ginebra", "15 ml de zumo de limón fresco", "10 ml de jarabe de azúcar simple", "60 ml de cava brut muy frío", "1 espiral de piel de limón"], "preparacion": ["En la coctelera con hielo, vierte la ginebra, el zumo de limón y el jarabe de azúcar.", "Bate enérgicamente durante 10 segundos.", "Cuela con colador fino en una copa flauta helada.", "Rellena con el cava brut despacio para coronar la copa con fina burbuja.", "Introduce la espiral de limón dentro de la flauta."], "consejo_bartender": "Bautizado por el cañón de campaña francés de 75 mm de la Primera Guerra Mundial por su sorprendente pegada: entra como una caricia gracias al cava y la limonada.", "section": "Cava & Brunch", "is_spanish": false, "liquor_group": "ginebra", "image_url": "images/37_french_75.jpg"}, {"num": 38, "key": "dark_and_stormy", "nombre": "Dark and stormy", "sin_alcohol": false, "base_alcohol": "Ron oscuro especiado y ginger beer", "metodo": "Construido en capas con hielo", "cristaleria": "Vaso alto (highball)", "tiempo_min": 3, "perfil_sabor": "Especiado, picante de jengibre y melaza", "hielo": "Cubos enteros", "ingredientes": ["50 ml de ron oscuro (tipo Black Seal o añejo oscuro)", "100 ml de cerveza de jengibre (ginger beer picante)", "15 ml de zumo de lima fresca", "1 gajo de lima para decorar"], "preparacion": ["Llena el vaso alto con cubos de hielo.", "Vierte el zumo de lima y la cerveza de jengibre fría hasta tres cuartas partes del vaso.", "Vierte con delicadeza el ron oscuro sobre la superficie dejando que flote como una tormenta sombría sobre el fondo dorado.", "Coloca el gajo de lima en el borde.", "Sírvelo sin mezclar para que el comensal admire el contraste antes de remover con su pajita."], "consejo_bartender": "El ron oscuro debe tener cuerpo y notas de melaza tostada: al flotar simula una nube de tormenta marina sobre el mar embravecido.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "ginebra", "image_url": "images/38_dark_and_stormy.jpg"}, {"num": 39, "key": "caipiroska", "nombre": "Caipiroska", "sin_alcohol": false, "base_alcohol": "Vodka", "metodo": "Macerado y construido", "cristaleria": "Vaso bajo (old fashioned)", "tiempo_min": 4, "perfil_sabor": "Cítrico limpio, dulce y refrescante", "hielo": "Hielo picado abundante", "ingredientes": ["50 ml de vodka neutro", "1 lima fresca cortada en dados", "2 cucharaditas de azúcar blanco", "Hielo picado hasta el borde"], "preparacion": ["Corta la lima en dados pequeños desechando la parte central blanca.", "Coloca los dados en el fondo del vaso bajo junto al azúcar.", "Maja con el mortero con firmeza para extraer el jugo sin triturar la corteza.", "Rellena el vaso con hielo picado hasta arriba.", "Vierte el vodka y remueve enérgicamente de abajo hacia arriba para que el azúcar se disuelva por completo.", "Corona con más hielo picado y una pajita corta."], "consejo_bartender": "Es la alternativa cosmopolita a la caipiriña: el vodka, al ser un alcohol neutro, deja todo el protagonismo a la pureza del zumo de lima y el azúcar crujiente.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "vodka", "image_url": "images/39_caipiroska.jpg"}, {"num": 40, "key": "amaretto_sour", "nombre": "Amaretto sour", "sin_alcohol": false, "base_alcohol": "Licor Amaretto y zumo de limón", "metodo": "Agitado simple (shake)", "cristaleria": "Vaso bajo (rocks)", "tiempo_min": 3, "perfil_sabor": "Almendra tostada, cítrico y agridulce", "hielo": "Cubos en coctelera y vaso", "ingredientes": ["50 ml de licor Amaretto (Disaronno)", "30 ml de zumo de limón recién exprimido y colado", "10 ml de bourbon (opcional, para dar cuerpo seco)", "15 ml de clara de huevo (opcional)", "1 rodaja de limón y 1 cereza al marrasquino"], "preparacion": ["Pon en la coctelera el Amaretto, el zumo de limón y el chorrito de bourbon con la clara.", "Agita 10 segundos sin hielo para formar la crema y luego 15 segundos con hielo abundante.", "Cuela sobre el vaso bajo con un cubo de hielo grueso.", "Decora con la rodaja de limón y la cereza sobre la espuma sedosa."], "consejo_bartender": "Añadir un golpe pequeño (10 ml) de bourbon o whisky es el truco maestro de los mejores bartenders: equilibra el dulzor del licor de almendra y aporta una redondez fabulosa.", "section": "Cítricos & Sours", "is_spanish": false, "liquor_group": "otros", "image_url": "images/40_amaretto_sour.jpg"}, {"num": 41, "key": "bramble", "nombre": "Bramble", "sin_alcohol": false, "base_alcohol": "Ginebra y licor de mora", "metodo": "Construido sobre hielo picado", "cristaleria": "Vaso bajo (rocks)", "tiempo_min": 4, "perfil_sabor": "Moras silvestres, cítrico y botánico", "hielo": "Hielo picado abundante", "ingredientes": ["45 ml de ginebra seca", "20 ml de zumo de limón recién exprimido", "15 ml de jarabe de azúcar simple", "15 ml de licor de mora (crème de mûre)", "2 moras frescas y 1 rodaja de limón"], "preparacion": ["En la coctelera con hielo, agita la ginebra, el zumo de limón y el jarabe de azúcar durante 10 segundos.", "Llena el vaso bajo con abundante hielo picado.", "Cuela la mezcla sobre el hielo picado.", "Vierte despacio el licor de mora por encima en forma circular: goteará entre el hielo creando un precioso sangrado púrpura.", "Decora con dos moras frescas ensartadas y una rodaja de limón."], "consejo_bartender": "Creado por Dick Bradsell en Londres en los años 80: el licor de mora debe flotar al final sin mezclarse para que al beber se combinen las capas ácidas y dulces.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "ginebra", "image_url": "images/41_bramble.jpg"}, {"num": 42, "key": "mai_tai", "nombre": "Mai Tai", "sin_alcohol": false, "base_alcohol": "Ron añejo, ron blanco y triple seco", "metodo": "Agitado simple (shake)", "cristaleria": "Vaso bajo (double old fashioned)", "tiempo_min": 4, "perfil_sabor": "Almendra, naranja, ron tostado y lima", "hielo": "Hielo picado abundante", "ingredientes": ["30 ml de ron blanco", "30 ml de ron añejo o jamaicano", "15 ml de licor de naranja (Cointreau o curaçao)", "15 ml de sirope de almendra (orgeat)", "25 ml de zumo de lima fresca", "1 ramita de menta y media lima vaciada"], "preparacion": ["Coloca en la coctelera con hielo el ron blanco, el licor de naranja, el sirope de almendra y el zumo de lima.", "Agita con intensidad durante 12 segundos.", "Vierte todo (incluyendo el hielo) en el vaso bajo grande.", "Corona flotando por encima los 30 ml de ron añejo para un aroma tostado inicial.", "Decora con la ramita de menta y la cáscara de lima invertida imitando una pequeña isla tropical."], "consejo_bartender": "Mai Tai significa 'fuera de este mundo' en tahitiano: el orgeat (jarabe de almendra) aporta la cremosidad vegetal que define su personalidad inimitable.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "ron", "image_url": "images/42_mai_tai.jpg"}, {"num": 43, "key": "sea_breeze", "nombre": "Sea breeze", "sin_alcohol": false, "base_alcohol": "Vodka, arándanos y pomelo", "metodo": "Construido en vaso con hielo", "cristaleria": "Vaso alto (highball)", "tiempo_min": 2, "perfil_sabor": "Cítrico, frutos rojos y final seco", "hielo": "Cubos grandes hasta arriba", "ingredientes": ["50 ml de vodka", "80 ml de zumo de arándanos rojos (cranberry)", "40 ml de zumo de pomelo rosado recién exprimido", "1 rodaja de lima o pomelo"], "preparacion": ["Llena el vaso alto con cubos de hielo macizo.", "Vierte el vodka.", "Añade el zumo de arándanos y el zumo de pomelo.", "Remueve con la cuchara imperial para homogeneizar el tono rubí brillante.", "Decora con una rodaja de lima en el borde."], "consejo_bartender": "Una de las combinaciones más depuradas y refrescantes que existen: el pomelo aporta el punto de acidez amarga que mitiga el dulzor de los arándanos.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "vodka", "image_url": "images/43_sea_breeze.jpg"}, {"num": 44, "key": "kir_royale", "nombre": "Kir Royale", "sin_alcohol": false, "base_alcohol": "Crema de cassis y cava", "metodo": "Construido directo en copa", "cristaleria": "Copa flauta de champán", "tiempo_min": 2, "perfil_sabor": "Grosella negra, elegante y burbujeante", "hielo": "Sin hielo (bebidas muy frías)", "ingredientes": ["15 ml de crema de cassis (licor de grosella negra de Dijon)", "130 ml de cava brut o champán muy frío", "1 mora o frambuesa fresca en el fondo (opcional)"], "preparacion": ["En una copa flauta fría, vierte en el fondo la dosis de crema de cassis.", "Inclina levemente la copa y vierte el cava brut despacio para que la burbuja suba teñida de un lujoso color púrpura aterciopelado.", "No necesita remover: las finas burbujas integran ambos líquidos.", "Si lo deseas, deja caer una mora fresca al fondo de la copa."], "consejo_bartender": "No abuses de la crema de cassis: solo debe teñir sutilmente el cava y dejar una suave caricia frutal sin volver empalagoso el vino espumoso.", "section": "Cava & Brunch", "is_spanish": false, "liquor_group": "vermut-vinos", "image_url": "images/44_kir_royale.jpg"}, {"num": 45, "key": "mint_julep", "nombre": "Mint julep", "sin_alcohol": false, "base_alcohol": "Bourbon y hierbabuena", "metodo": "Macerado y construido", "cristaleria": "Vaso metálico de julepe o vaso bajo", "tiempo_min": 4, "perfil_sabor": "Menta fresca, roble tostado y caramelo", "hielo": "Abundante hielo picado (montaña de hielo)", "ingredientes": ["60 ml de bourbon whisky", "8 a 10 hojas de menta fresca", "15 ml de jarabe de azúcar simple", "Montaña de hielo picado", "Un ramillete frondoso de menta para coronar"], "preparacion": ["En el vaso metálico o de cristal, deposita la menta y el jarabe simple.", "Presiona delicadamente con el mortero para liberar el aceite mentolado sin machacar en exceso.", "Llena el vaso hasta la mitad con hielo picado y vierte la mitad del bourbon. Remueve con la cuchara hasta que el exterior del vaso empiece a sudar frío.", "Llena con más hielo picado hasta el borde y vierte el resto del bourbon.", "Corona con una cúpula de hielo picado y un ramillete generoso de menta espolvoreado con una nube de azúcar glas."], "consejo_bartender": "El vaso metálico de julepe no es capricho: transmite el frío de inmediato formando una capa de escarcha blanca helada en el exterior que mantiene el trago gélido durante horas.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "whisky", "image_url": "images/45_mint_julep.jpg"}, {"num": 46, "key": "sol_y_sombra", "nombre": "Sol y sombra", "sin_alcohol": false, "base_alcohol": "Anís dulce y brandy español", "metodo": "Construido directo", "cristaleria": "Copa de licor o vaso corto tradicional", "tiempo_min": 2, "perfil_sabor": "Anisado, dulce, cálido y amaderado", "hielo": "Sin hielo o con 1 cubito al gusto", "ingredientes": ["25 ml de anís dulce (tipo Anís del Mono)", "25 ml de brandy español (tipo Solera Reserva)", "Hielo opcional según preferencia"], "preparacion": ["En la copa pequeña o vasito de chupito ancho, vierte el anís dulce (el 'sol').", "Añade a continuación en partes iguales el brandy español (la 'sombra').", "Remueve con un ligero giro de muñeca para amalgamar la transparencia anisada con la tonalidad caoba del brandy.", "Degusta a temperatura ambiente o añade una piedra de hielo para disfrutarlo con trago largo y fresco."], "consejo_bartender": "Es el trago castizo por excelencia de los bares y tabernas históricas de España: el anís aporta el azúcar floral y el brandy la estructura añeja de roble.", "section": "Clásicos & Sobremesa", "is_spanish": true, "liquor_group": "vermut-vinos", "image_url": "images/46_sol_y_sombra.jpg"}, {"num": 47, "key": "sidecar", "nombre": "Sidecar", "sin_alcohol": false, "base_alcohol": "Brandy o coñac y licor de naranja", "metodo": "Agitado simple (shake)", "cristaleria": "Copa cóctel (coupette) escarchada", "tiempo_min": 3, "perfil_sabor": "Cítrico, naranja dulce, roble y seco", "hielo": "Cubos para la coctelera", "ingredientes": ["50 ml de coñac o brandy español", "20 ml de licor de naranja (Cointreau o triple seco)", "20 ml de zumo de limón recién exprimido y colado", "Azúcar blanco para escarchar el borde", "1 twist de piel de naranja"], "preparacion": ["Pasa un gajo de limón por la mitad del borde de la copa y pásalo por azúcar para crear un ribete dulce.", "En la coctelera con hielo, vierte el coñac o brandy, el licor de naranja y el zumo de limón.", "Bate enérgicamente durante 12 segundos.", "Cuela con doble colador fino sobre la copa preparada.", "Perfuma la copa con el twist de naranja y déjalo caer dentro."], "consejo_bartender": "El ribete de azúcar en el borde exterior contrasta de forma magistral con la acidez vivaz del limón y la solera profunda del destilado.", "section": "Cítricos & Sours", "is_spanish": false, "liquor_group": "vermut-vinos", "image_url": "images/47_sidecar.jpg"}, {"num": 48, "key": "irish_coffee", "nombre": "Café irlandés (Irish coffee)", "sin_alcohol": false, "base_alcohol": "Whisky irlandés, café y nata", "metodo": "Construido en capas templadas", "cristaleria": "Copa de cristal templado", "tiempo_min": 5, "perfil_sabor": "Café tostado caliente, whisky y nata sedosa", "hielo": "Sin hielo (cóctel caliente)", "ingredientes": ["40 ml de whisky irlandés", "120 ml de café solo caliente recién hecho", "1 a 2 cucharaditas de azúcar moreno", "40 ml de nata líquida fría ligeramente semimontada", "Cacao puro en polvo o ralladura de nuez moscada"], "preparacion": ["Templa la copa con agua caliente durante 1 minuto y vacíala.", "Añade el azúcar moreno y el whisky irlandés en el fondo.", "Vierte el café caliente y remueve bien hasta que el azúcar se disuelva íntegramente.", "Bate la nata líquida en un bote o con varilla durante 15 segundos hasta que espese pero siga siendo líquida.", "Vierte la nata lentamente sobre el dorso de una cuchara caliente sobre la superficie del café.", "Espolvorea una pizca de cacao en polvo sobre la crema blanca."], "consejo_bartender": "No bebas con pajita ni mezcles la nata con el café: el placer inimitable del auténtico café irlandés consiste en tomar el café caliente y alcohólico a través de la capa de nata fría.", "section": "Clásicos & Sobremesa", "is_spanish": false, "liquor_group": "whisky", "image_url": "images/48_irish_coffee.jpg"}, {"num": 49, "key": "padrino", "nombre": "Padrino (Godfather)", "sin_alcohol": false, "base_alcohol": "Whisky escocés y licor de almendra", "metodo": "Construido y refrescado", "cristaleria": "Vaso bajo (old fashioned / rocks)", "tiempo_min": 2, "perfil_sabor": "Ahumado, almendra dulce y aterciopelado", "hielo": "Una roca de hielo grande", "ingredientes": ["45 ml de whisky escocés (Blended o Single Malt suave)", "25 ml de licor Amaretto", "1 roca de hielo grande", "1 twist de piel de naranja (opcional)"], "preparacion": ["Coloca una roca de hielo grande y limpia en el vaso bajo.", "Vierte el whisky escocés.", "Añade el licor Amaretto.", "Remueve pausadamente con la cuchara de bar durante unos 20 segundos para que ambos licores se fundan y se enfríen.", "Si lo deseas, pasa una piel de naranja por el borde del vaso para aportar una nota cítrica fresca."], "consejo_bartender": "Con solo dos ingredientes, el Padrino demuestra la magia del equilibrio: la turba y la madera del whisky escocés quedan abrazadas por la golosidad de la almendra dulce.", "section": "Clásicos & Sobremesa", "is_spanish": false, "liquor_group": "whisky", "image_url": "images/49_padrino.jpg"}, {"num": 50, "key": "laguna_azul", "nombre": "Laguna azul (Blue lagoon)", "sin_alcohol": false, "base_alcohol": "Vodka y licor de curaçao azul", "metodo": "Construido en vaso con hielo", "cristaleria": "Vaso alto (highball) o copa huracán", "tiempo_min": 3, "perfil_sabor": "Cítrico, naranja dulce y electrizante", "hielo": "Cubos macizos", "ingredientes": ["40 ml de vodka", "20 ml de licor Blue Curaçao (curaçao azul)", "15 ml de zumo de limón recién exprimido", "100 ml de refresco de lima-limón (Sprite o gaseosa)", "1 rodaja de limón y 1 cereza de cóctel"], "preparacion": ["Llena el vaso alto con cubos de hielo hasta arriba.", "Vierte el vodka, el licor Blue Curaçao y el zumo de limón recién exprimido.", "Rellena despacio con el refresco de lima-limón frío.", "Remueve suavemente con la cuchara para repartir el espectacular color azul eléctrico.", "Decora con una rodaja de limón encajada en el borde y una cereza de cóctel."], "consejo_bartender": "Creado por Andy MacElhone en el Harry's New York Bar de París: su impactante color azul tropical y su perfil cítrico lo convierten en un éxito garantizado en fiestas y reuniones caseras.", "section": "Tragos Largos & Tropicales", "is_spanish": false, "liquor_group": "vodka", "image_url": "images/50_laguna_azul.jpg"}];
+
+    let activeFilter = 'all';
+    let activeSpirit = 'all';
+    let searchQuery = '';
+    let currentCocktail = null;
+
+    const grid = document.getElementById('cocktailsGrid');
+    const resultsCount = document.getElementById('resultsCount');
+    const noResults = document.getElementById('noResults');
+    const searchInput = document.getElementById('searchInput');
+    const searchClear = document.getElementById('searchClear');
+    const btnTop = document.getElementById('btnTop');
+    const recipeModal = document.getElementById('recipeModal');
+    const guideModal = document.getElementById('guideModal');
+
+    // INICIALIZACIÓN
+    function init() {
+      renderCards();
+      setupEventListeners();
+      checkUrlHash();
+    }
+
+    // RENDERIZADO DE TARJETAS
+    function renderCards() {
+      const filtered = COCKTAILS_DATA.filter(c => {
+        // Filtro por categoría / sección
+        if (activeFilter === 'spanish' && !c.is_spanish) return false;
+        if (activeFilter === 'sin-alcohol' && !c.sin_alcohol) return false;
+        if (activeFilter !== 'all' && activeFilter !== 'spanish' && activeFilter !== 'sin-alcohol' && c.section !== activeFilter) return false;
+
+        // Filtro por destilado
+        if (activeSpirit !== 'all' && c.liquor_group !== activeSpirit) return false;
+
+        // Búsqueda por texto
+        if (searchQuery.trim() !== '') {
+          const q = searchQuery.toLowerCase().trim();
+          const matchName = c.nombre.toLowerCase().includes(q);
+          const matchBase = c.base_alcohol.toLowerCase().includes(q);
+          const matchTaste = (c.perfil_sabor || '').toLowerCase().includes(q);
+          const matchGlass = (c.cristaleria || '').toLowerCase().includes(q);
+          const matchIng = c.ingredientes.some(i => i.toLowerCase().includes(q));
+          if (!matchName && !matchBase && !matchTaste && !matchGlass && !matchIng) return false;
+        }
+
+        return true;
+      });
+
+      grid.innerHTML = '';
+
+      if (filtered.length === 0) {
+        noResults.style.display = 'block';
+        resultsCount.textContent = '0 recetas encontradas';
+        return;
+      }
+
+      noResults.style.display = 'none';
+      resultsCount.textContent = `Mostrando ${filtered.length} de 50 recetas`;
+
+      filtered.forEach(c => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.onclick = () => openCocktail(c.num);
+
+        let badgeClass = 'card-badge';
+        let badgeText = c.section;
+        if (c.sin_alcohol) {
+          badgeClass += ' badge-mocktail';
+          badgeText = '🌿 Sin alcohol';
+        } else if (c.is_spanish) {
+          badgeClass += ' badge-spanish';
+          badgeText = '🇪🇸 Ibérico';
+        }
+
+        card.innerHTML = `
+          <div class="card-img-wrap">
+            <span class="card-num">#${String(c.num).padStart(2, '0')}</span>
+            <span class="${badgeClass}">${badgeText}</span>
+            <img class="card-img" src="${c.image_url}" alt="${c.nombre}" loading="lazy">
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <div class="card-category">${c.base_alcohol}</div>
+              <h3 class="card-title">${c.nombre}</h3>
+            </div>
+            <div class="card-taste">${c.perfil_sabor || ''}</div>
+            <div class="card-specs">
+              <div class="card-spec-item">
+                <span class="card-spec-label">Copa</span>
+                <span class="card-spec-val">${c.cristaleria}</span>
+              </div>
+              <div class="card-spec-item">
+                <span class="card-spec-label">Método</span>
+                <span class="card-spec-val">${c.metodo}</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span>${c.ingredientes.length} ingredientes</span>
+              <span>Ver receta &rarr;</span>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // MODAL DE CÓCTEL
+    function openCocktail(num) {
+      const c = COCKTAILS_DATA.find(item => item.num === num);
+      if (!c) return;
+      currentCocktail = c;
+
+      // Actualizar hash en la barra de navegación para compartir enlaces
+      history.replaceState(null, null, `#${c.key}`);
+
+      document.getElementById('mImg').src = c.image_url;
+      document.getElementById('mNum').textContent = `#${String(c.num).padStart(2, '0')}`;
+      
+      const badge = document.getElementById('mBadge');
+      badge.textContent = c.sin_alcohol ? '🌿 Sin alcohol' : (c.is_spanish ? '🇪🇸 Ibérico' : c.section);
+      badge.className = 'card-badge' + (c.sin_alcohol ? ' badge-mocktail' : (c.is_spanish ? ' badge-spanish' : ''));
+
+      document.getElementById('mTitle').textContent = c.nombre;
+      document.getElementById('mSubtitle').textContent = `${c.base_alcohol} · ${c.perfil_sabor || ''}`;
+      document.getElementById('mGlass').textContent = c.cristaleria;
+      document.getElementById('mMethod').textContent = c.metodo;
+      document.getElementById('mIce').textContent = c.hielo;
+      document.getElementById('mTime').textContent = c.tiempo_min;
+
+      // Ingredientes
+      const ingList = document.getElementById('mIngredients');
+      ingList.innerHTML = '';
+      c.ingredientes.forEach((ing, idx) => {
+        const li = document.createElement('li');
+        li.className = 'checklist-item';
+        li.innerHTML = `
+          <input type="checkbox" id="ing_${idx}">
+          <span class="checklist-text">${ing}</span>
+        `;
+        li.onclick = (e) => {
+          if (e.target.tagName !== 'INPUT') {
+            const chk = li.querySelector('input');
+            chk.checked = !chk.checked;
+          }
+          li.classList.toggle('checked', li.querySelector('input').checked);
+        };
+        ingList.appendChild(li);
+      });
+
+      // Pasos
+      const stepsList = document.getElementById('mSteps');
+      stepsList.innerHTML = '';
+      c.preparacion.forEach((step, idx) => {
+        const li = document.createElement('li');
+        li.className = 'step-item';
+        li.innerHTML = `
+          <div class="step-num">${idx + 1}</div>
+          <div class="step-desc">${step}</div>
+        `;
+        stepsList.appendChild(li);
+      });
+
+      // Consejo
+      document.getElementById('mTip').textContent = c.consejo_bartender || 'Medir con precisión en mililitros garantiza el equilibrio.';
+
+      recipeModal.style.display = 'flex';
+      setTimeout(() => recipeModal.classList.add('open'), 10);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeRecipeModal(e) {
+      if (e && e.target !== recipeModal && !e.target.classList.contains('modal-close-btn') && !e.target.classList.contains('btn-glass')) return;
+      recipeModal.classList.remove('open');
+      setTimeout(() => {
+        recipeModal.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 250);
+      history.replaceState(null, null, ' ');
+    }
+
+    // MODAL DE GUÍA
+    function openGuideModal() {
+      guideModal.style.display = 'flex';
+      setTimeout(() => guideModal.classList.add('open'), 10);
+      document.body.style.overflow = 'hidden';
+    }
+    function closeGuideModal(e) {
+      guideModal.classList.remove('open');
+      setTimeout(() => {
+        guideModal.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 250);
+    }
+
+    // COMPARTIR
+    function shareCocktail() {
+      if (!currentCocktail) return;
+      const shareData = {
+        title: `${currentCocktail.nombre} | 50 Cócteles`,
+        text: `Aprende a preparar ${currentCocktail.nombre} paso a paso: ${currentCocktail.ingredientes.join(', ')}`,
+        url: window.location.href
+      };
+      if (navigator.share) {
+        navigator.share(shareData).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('¡Enlace de la receta copiado al portapapeles!');
+      }
+    }
+
+    // LISTENERS & EVENTOS
+    function setupEventListeners() {
+      // Búsqueda
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        searchClear.style.display = searchQuery ? 'block' : 'none';
+        renderCards();
+      });
+
+      // Filtros de categoría
+      document.querySelectorAll('#categoryChips .chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#categoryChips .chip').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeFilter = btn.dataset.filter;
+          renderCards();
+        });
+      });
+
+      // Filtros de destilado
+      document.querySelectorAll('#spiritChips .chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#spiritChips .chip').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeSpirit = btn.dataset.spirit;
+          renderCards();
+        });
+      });
+
+      // Scroll top button
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          btnTop.style.display = 'flex';
+        } else {
+          btnTop.style.display = 'none';
+        }
+      });
+
+      // Tecla Escape para cerrar modales
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeRecipeModal();
+          closeGuideModal();
+        }
+      });
+    }
+
+    function clearSearch() {
+      searchInput.value = '';
+      searchQuery = '';
+      searchClear.style.display = 'none';
+      renderCards();
+    }
+
+    function resetAllFilters() {
+      clearSearch();
+      activeFilter = 'all';
+      activeSpirit = 'all';
+      document.querySelectorAll('#categoryChips .chip').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+      document.querySelectorAll('#spiritChips .chip').forEach(b => b.classList.toggle('active', b.dataset.spirit === 'all'));
+      renderCards();
+    }
+
+    function checkUrlHash() {
+      const hash = window.location.hash.replace('#', '').trim();
+      if (!hash) return;
+      const found = COCKTAILS_DATA.find(c => c.key === hash || String(c.num) === hash);
+      if (found) {
+        openCocktail(found.num);
+      }
+    }
+
+    // INICIAR
+    init();
+  </script>
+</body>
+</html>

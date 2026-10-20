@@ -17,4 +17,7 @@
 | `CHANGELOG.md` | `/home/jesus/Documentos/GIT/Libro de cocteles/` | Documentación | Historial cronológico de cambios, mejoras y correcciones | Válido | Media |
 | `download_images.py` | `/home/jesus/Documentos/GIT/Libro de cocteles/` | Scripts | Script de automatización de descarga de imágenes desde repositorios libres | Válido | Baja |
 | `generate_test.py` | `/home/jesus/Documentos/GIT/Libro de cocteles/` | Scripts | Script de calibración y prueba unitaria de retícula editorial | Válido | Baja |
+| `index.html` | `/home/jesus/Documentos/GIT/Libro de cocteles/` | Resultados finales / Web | Aplicación web interactiva SPA optimizada para móviles y GitHub Pages | Válido | Crítica |
+| `generate_web.py` | `/home/jesus/Documentos/GIT/Libro de cocteles/` | Scripts | Generador de la aplicación web responsive desde `cocktails_data.py` | Válido | Alta |
+| `README.md` | `/home/jesus/Documentos/GIT/Libro de cocteles/` | Documentación | Documentación principal del repositorio para GitHub | Válido | Alta |
 | `contact_sheet.jpg` | `/home/jesus/Documentos/GIT/Libro de cocteles/` | Archivos de trabajo | Hoja de contactos para auditoría visual simultánea de las 50 recetas | Válido | Baja |

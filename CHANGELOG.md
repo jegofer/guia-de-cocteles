@@ -5,6 +5,15 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/
 
 ---
 
+## [1.2.0] - 2026-10-20
+
+### Añadido
+- **Aplicación Web Móvil Interactiva (SPA)** para GitHub Pages:
+  - `index.html`: Web responsiva táctil ultraligera (101 KB) con buscador instantáneo, filtros por categoría y tipo de alcohol, fichas con checklist interactivo de ingredientes y visor de pasos.
+  - `generate_web.py`: Script en Python para compilar `index.html` a partir de `cocktails_data.py`.
+  - `README.md`: Documentación completa del proyecto con enlace a la web pública de GitHub Pages (`https://jegofer.github.io/guia-de-cocteles/`) y botón de descarga del PDF.
+  - `.gitignore`: Configuración de exclusiones de archivos temporales para el repositorio.
+
 ## [1.1.0] - 2026-10-20
 
 ### Añadido
