@@ -5,6 +5,25 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/
 
 ---
 
+## [1.3.0] - 2026-10-21
+
+### Añadido
+- **Sistema de Cócteles Favoritos**:
+  - Marcado directo con botón de estrella ⭐ tanto desde las tarjetas del catálogo como desde la cabecera de la ficha detallada.
+  - Persistencia bidireccional en el navegador mediante `localStorage` y cookies (`cocteles_favoritos`) sin necesidad de registro ni cuenta de usuario.
+  - Filtro rápido prioritario `⭐ Favoritos (N)` en la barra de categorías con pantalla explicativa para estado vacío.
+- **Nuevo Cóctel Tradicional**:
+  - Incorporación del cóctel **#51 Calimocho (Kalimotxo)** en `cocktails_data.py` con historia en Algorta, fórmula 50/50 y vaso de sidra.
+  - Fotografía de estudio dedicada `images/51_calimocho.jpg`.
+
+### Cambiado
+- **Renovación fotográfica de estudio**:
+  - Sustitución de imágenes por tomas de estudio profesional con iluminación cálida y natural para: Margarita (`09_margarita.jpg`), Mint Julep (`45_mint_julep.jpg`), Café irlandés (`48_irish_coffee.jpg`), Negroni (`08_negroni.jpg`), Mojito (`02_mojito.jpg`), Agua de Valencia (`06_agua_de_valencia.jpg`), Rebujito (`07_rebujito.jpg`).
+- **Corrección de interfaz y diseño responsive móvil**:
+  - Eliminación del dato de tiempo de elaboración de las fichas y tarjetas.
+  - Rediseño de la cuadrícula de especificaciones (*Copa, Método y Hielo*) en 3 columnas adaptativas con auto-ajuste de texto para evitar desbordamientos en pantallas móviles estrechas.
+  - Corrección de la cabecera del modal: el número y la etiqueta de categoría ahora fluyen de manera natural e independiente por encima del título, impidiendo cualquier solapamiento u ocultación del nombre del cóctel.
+
 ## [1.2.0] - 2026-10-20
 
 ### Añadido

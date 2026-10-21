@@ -66,3 +66,18 @@
 - **Alternativas consideradas:** Referencias por ruta de archivo local `file://`.
 - **Consecuencias:** Aumenta el tamaño de `libro_cocteles.html` (~12.7 MB), pero garantiza una portabilidad y estabilidad de compilación absolutas.
 - **Estado:** VIGENTE
+
+---
+
+## DEC-007 — Persistencia de favoritos en cliente, ampliación a 51 cócteles y optimización móvil
+
+- **Fecha:** 2026-10-21
+- **Decisión:** 
+  1. Implementar sistema de favoritos sin backend ni registro, utilizando persistencia doble sincronizada en `localStorage` y cookies (`cocteles_favoritos`).
+  2. Añadir el cóctel #51 *Calimocho* como icono popular de taberna española en vaso de sidra.
+  3. Eliminar el dato del tiempo de preparación de la web para aligerar la carga visual.
+  4. Rediseñar la cuadrícula de especificaciones (*Copa, Método y Hielo*) en 3 columnas fluidas con salto de línea natural (`white-space: normal`) para garantizar que nunca desborde pantallas móviles estrechas.
+  5. Desacoplar el número y categoría de la cabecera del modal del flujo absoluto sobre la imagen, ubicándolos en un bloque previo al título para impedir solapamientos con el nombre del cóctel.
+- **Motivo:** Petición expresa del usuario para mejorar la ergonomía táctil en smartphones y personalizar su experiencia de consulta.
+- **Consecuencias:** Mayor usabilidad móvil, cero desbordamientos visuales y funcionalidad de guardado persistente.
+- **Estado:** APROBADA

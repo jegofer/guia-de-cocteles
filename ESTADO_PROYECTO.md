@@ -4,9 +4,9 @@
 - **Proyecto:** Libro editorial "50 cócteles explicados paso a paso: Guía visual y práctica para principiantes"
 - **Objetivo:** Generar un libro de coctelería maquetado a nivel profesional en PDF (55 págs.) y HTML con 50 recetas, fotografías de alta calidad y rigor técnico adaptado a España.
 - **Estado:** COMPLETADO
-- **Fecha de actualización:** 2026-10-20
-- **Última tarea completada:** Auditoría y reemplazo de 15 fotografías (San Francisco, Sol y sombra, Paloma, etc.), recompilación del PDF (55 páginas, 37.9 MB), guardado del prompt original y creación del sistema de contexto.
-- **Próxima tarea que debe realizarse:** Revisión por parte del usuario del PDF final generado o posibles adaptaciones a imprenta/formato digital.
+- **Fecha de actualización:** 2026-10-21
+- **Última tarea completada:** Actualización de la web SPA (index.html): incorporación del sistema de favoritos con persistencia en localStorage/cookies, adición del Calimocho (#51), eliminación del tiempo de preparación, corrección de visualización móvil de copa/método/hielo y de la cabecera del modal, y actualización fotográfica de estudio (Margarita, Mint Julep, Irish Coffee, Negroni, Mojito, Agua de Valencia, Rebujito, Calimocho).
+- **Próxima tarea que debe realizarse:** Revisión por parte del usuario de las nuevas funciones web y subida/despliegue en GitHub Pages.
 
 ### Progreso
 

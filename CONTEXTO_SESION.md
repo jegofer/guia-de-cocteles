@@ -7,13 +7,19 @@
 Libro editorial gastronómico de 55 páginas en formato PDF y HTML con 50 recetas clásicas y españolas, maquetación profesional a página individual y fotografías de alta calidad.
 
 ## SITUACIÓN ACTUAL
-Proyecto completamente terminado, con las 50 imágenes auditadas y corregidas, PDF recompilado y validado en 55 páginas exactas (37.9 MB), prompt original preservado y sistema de memoria técnica implementado.
+Proyecto ampliado a 51 cócteles con la incorporación del Calimocho, sistema de favoritos interactivo en la web móvil con persistencia dual (localStorage y cookie), rediseño visual responsive de especificaciones sin desbordes y actualización fotográfica de estudio para 8 cócteles.
 
 ## ÚLTIMO TRABAJO REALIZADO
-Auditoría visual exhaustiva de las 50 recetas. Se reemplazaron 15 fotografías desalineadas o no acordes (destacando San Francisco, Sol y sombra y Paloma) por imágenes de estudio de Wiki Loves Cocktails y Wikimedia Commons. Se recompiló `50_cocteles_explicados_paso_a_paso.pdf`, se guardó `PROMPT_ORIGINAL.md` y se generaron los 8 archivos de memoria técnica persistente.
+Actualización de la SPA móvil (`index.html` y `generate_web.py`):
+1. Sistema de favoritos con botón de estrella ⭐ en tarjetas y modal, persistencia sin registro mediante cookie y localStorage, y filtro prioritario ⭐ Favoritos.
+2. Eliminación del tiempo de elaboración.
+3. Corrección de la fila de especificaciones (Copa, Método y Hielo) para evitar desbordes móviles.
+4. Corrección de cabecera en la ficha detallada (el número y la categoría ya no solapan ni tapan el nombre del cóctel).
+5. Incorporación de la receta y fotografía de Calimocho (#51).
+6. Renovación fotográfica con estética de estudio e iluminación cálida natural para Margarita, Mint Julep, Café irlandés, Negroni, Mojito, Agua de Valencia, Rebujito y Calimocho.
 
 ## PRÓXIMA ACCIÓN
-Revisión visual final por parte del usuario del libro en PDF y confirmación de satisfacción con las nuevas fotografías.
+Revisión por parte del usuario de las novedades en la aplicación web móvil y despliegue a GitHub Pages.
 
 ## DECISIONES IMPORTANTES
 - Formato fijo de 1 cóctel = 1 página exacta A4, sin desbordamientos de texto.

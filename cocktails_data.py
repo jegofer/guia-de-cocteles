@@ -1346,5 +1346,31 @@ COCKTAILS = [
             "Decora con una rodaja de limón encajada en el borde y una cereza de cóctel."
         ],
         "consejo_bartender": "Creado por Andy MacElhone en el Harry's New York Bar de París: su impactante color azul tropical y su perfil cítrico lo convierten en un éxito garantizado en fiestas y reuniones caseras."
+    },
+    {
+        "num": 51,
+        "key": "calimocho",
+        "nombre": "Calimocho (Kalimotxo)",
+        "sin_alcohol": False,
+        "base_alcohol": "Vino tinto y refresco de cola",
+        "metodo": "Construido en el vaso con hielo",
+        "cristaleria": "Vaso de sidra o vaso alto",
+        "tiempo_min": 2,
+        "perfil_sabor": "Afrutado, dulce, burbujeante y refrescante",
+        "hielo": "Abundantes cubos macizos",
+        "ingredientes": [
+            "100 ml de vino tinto joven (con buen cuerpo)",
+            "100 ml de refresco de cola bien frío",
+            "Abundante hielo macizo en cubos",
+            "1 rodaja de limón fresco (opcional: toque de licor de mora)"
+        ],
+        "preparacion": [
+            "Llena un vaso ancho de sidra o vaso alto con abundante hielo macizo hasta arriba.",
+            "Vierte primero el vino tinto joven.",
+            "Añade despacio el refresco de cola frío para no romper la burbuja.",
+            "Remueve con un solo movimiento suave de cuchara de abajo hacia arriba para integrar.",
+            "Decora con una rodaja de limón fresco en el interior o en el borde."
+        ],
+        "consejo_bartender": "Nacido en el Puerto Viejo de Algorta en los años 70: la proporción áurea es 50/50, servido obligatoriamente con hielo muy abundante para que no pierda frescura ni carbónico."
     }
 ]

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Generador de la aplicación Web Móvil Interactiva (Single Page Application):
-'50 CÓCTELES EXPLICADOS PASO A PASO'
+'51 CÓCTELES EXPLICADOS PASO A PASO'
 Optimizada para GitHub Pages, dispositivos móviles y pantallas táctiles.
+Incluye sistema de favoritos con persistencia en localStorage/cookies.
 """
 
 import json
@@ -31,7 +32,7 @@ SECTION_MAP = {
     24: "Tragos Largos & Tropicales", 25: "Tragos Largos & Tropicales", 31: "Tragos Largos & Tropicales",
     32: "Tragos Largos & Tropicales", 38: "Tragos Largos & Tropicales", 39: "Tragos Largos & Tropicales",
     41: "Tragos Largos & Tropicales", 42: "Tragos Largos & Tropicales", 43: "Tragos Largos & Tropicales",
-    45: "Tragos Largos & Tropicales", 50: "Tragos Largos & Tropicales",
+    45: "Tragos Largos & Tropicales", 50: "Tragos Largos & Tropicales", 51: "Tragos Largos & Tropicales",
     
     # V. Grandes Clásicos & Sobremesas
     13: "Clásicos & Sobremesa", 18: "Clásicos & Sobremesa", 20: "Clásicos & Sobremesa",
@@ -41,7 +42,7 @@ SECTION_MAP = {
 }
 
 # Iconos representativos de la tradición ibérica
-SPANISH_COCKTAILS = {1, 3, 4, 6, 7, 11, 24, 26, 33, 46}
+SPANISH_COCKTAILS = {1, 3, 4, 6, 7, 11, 24, 26, 33, 46, 51}
 
 def get_liquor_group(c):
     if c.get("sin_alcohol"):
@@ -75,6 +76,8 @@ def build_web_app():
         data_for_json.append(c_copy)
 
     cocktails_json_str = json.dumps(data_for_json, ensure_ascii=False)
+    total_cocktails = len(data_for_json)
+    spanish_count = sum(1 for c in data_for_json if c["is_spanish"])
 
     html = f"""<!DOCTYPE html>
 <html lang="es">
@@ -82,10 +85,10 @@ def build_web_app():
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <meta name="theme-color" content="#090d16">
-  <meta name="description" content="Guía interactiva para móvil de 50 cócteles explicados paso a paso con medidas exactas, fotos de alta resolución y trucos de bartender.">
+  <meta name="description" content="Guía interactiva para móvil de {total_cocktails} cócteles explicados paso a paso con medidas exactas, fotos de alta resolución, trucos de bartender y favoritos.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>50 Cócteles explicados paso a paso | Guía Web Móvil</title>
+  <title>{total_cocktails} Cócteles explicados paso a paso | Guía Web Móvil</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -318,6 +321,7 @@ def build_web_app():
       display: inline-flex;
       align-items: center;
       gap: 5px;
+      user-select: none;
     }}
     .chip:hover {{
       background: var(--bg-surface-elevated);
@@ -328,6 +332,22 @@ def build_web_app():
       color: #090d16;
       border-color: var(--gold-light);
       box-shadow: 0 2px 10px var(--gold-glow);
+    }}
+
+    .chip-fav {{
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.3);
+      color: var(--gold-light);
+    }}
+    .chip-fav:hover {{
+      background: rgba(245, 158, 11, 0.18);
+      color: #ffffff;
+    }}
+    .chip-fav.active {{
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #090d16;
+      border-color: #fbbf24;
+      font-weight: 700;
     }}
 
     /* METRICS / STATS BAR */
@@ -351,8 +371,15 @@ def build_web_app():
 
     .cocktails-grid {{
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.25rem;
+    }}
+
+    @media (max-width: 640px) {{
+      .cocktails-grid {{
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }}
     }}
 
     /* TARJETA DE CÓCTEL */
@@ -361,27 +388,24 @@ def build_web_app():
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
       display: flex;
       flex-direction: column;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-      box-shadow: var(--shadow-card);
       position: relative;
     }}
+
     .card:hover {{
-      transform: translateY(-3px);
-      box-shadow: 0 16px 30px -10px rgba(0,0,0,0.6);
-      border-color: rgba(245, 158, 11, 0.4);
-    }}
-    .card:active {{
-      transform: scale(0.98);
+      transform: translateY(-4px);
+      border-color: var(--border-gold);
+      box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.6), 0 0 20px var(--gold-glow);
     }}
 
-    /* IMAGEN DE TARJETA */
     .card-img-wrap {{
       position: relative;
       width: 100%;
-      height: 200px;
+      height: 190px;
       background: #0f172a;
       overflow: hidden;
     }}
@@ -404,28 +428,64 @@ def build_web_app():
       background: rgba(9, 13, 22, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       color: var(--gold-light);
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.75rem;
       font-weight: 700;
       padding: 3px 8px;
       border-radius: var(--radius-sm);
+      z-index: 2;
+    }}
+
+    .card-fav-btn {{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-full);
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 5;
+      transition: all 0.2s ease;
+      padding: 0;
+    }}
+    .card-fav-btn:hover {{
+      transform: scale(1.15);
+      border-color: var(--gold-light);
+      color: var(--gold-light);
+    }}
+    .card-fav-btn.active {{
+      background: rgba(245, 158, 11, 0.25);
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+      box-shadow: 0 0 10px var(--gold-glow);
     }}
 
     .card-badge {{
       position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(9, 13, 22, 0.85);
+      bottom: 10px;
+      left: 10px;
+      background: rgba(9, 13, 22, 0.88);
       backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #ffffff;
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      padding: 4px 9px;
+      padding: 3px 8px;
       border-radius: var(--radius-full);
+      z-index: 2;
     }}
     .card-badge.badge-mocktail {{
       background: #047857;
@@ -445,7 +505,7 @@ def build_web_app():
     }}
 
     .card-header {{
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
     }}
 
     .card-category {{
@@ -485,6 +545,7 @@ def build_web_app():
     .card-spec-item {{
       display: flex;
       flex-direction: column;
+      min-width: 0;
     }}
     .card-spec-label {{
       color: var(--text-muted);
@@ -532,7 +593,7 @@ def build_web_app():
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.82);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       z-index: 100;
@@ -558,35 +619,20 @@ def build_web_app():
       -webkit-overflow-scrolling: touch;
       display: flex;
       flex-direction: column;
-      box-shadow: var(--shadow-modal);
       transform: translateY(100%);
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }}
-    @media (min-width: 680px) {{
-      .modal-backdrop {{
-        align-items: center;
-        padding: 1.5rem;
-      }}
-      .modal-sheet {{
-        border-radius: var(--radius-lg);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-        max-height: 88vh;
-        transform: scale(0.95) translateY(20px);
-      }}
-      .modal-backdrop.open .modal-sheet {{
-        transform: scale(1) translateY(0);
-      }}
     }}
     .modal-backdrop.open .modal-sheet {{
       transform: translateY(0);
     }}
 
-    /* MODAL HERO */
+    /* MODAL HERO (SOLO IMAGEN Y BOTONES FLOTANTES DE ACCIÓN) */
     .modal-hero {{
       position: relative;
-      height: 240px;
+      height: 220px;
       width: 100%;
       background: #0f172a;
+      flex-shrink: 0;
     }}
     .modal-hero-img {{
       width: 100%;
@@ -597,17 +643,25 @@ def build_web_app():
     .modal-hero-gradient {{
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(9, 13, 22, 0.3) 0%, rgba(17, 24, 39, 0.95) 100%);
+      background: linear-gradient(180deg, rgba(9, 13, 22, 0.4) 0%, rgba(9, 13, 22, 0.05) 50%, rgba(17, 24, 39, 1) 100%);
     }}
 
-    .modal-close-btn {{
+    .modal-hero-bar {{
       position: absolute;
       top: 14px;
+      left: 14px;
       right: 14px;
-      width: 36px;
-      height: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }}
+
+    .modal-icon-btn {{
+      width: 38px;
+      height: 38px;
       border-radius: var(--radius-full);
-      background: rgba(9, 13, 22, 0.8);
+      background: rgba(9, 13, 22, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: #ffffff;
       display: flex;
@@ -615,71 +669,140 @@ def build_web_app():
       justify-content: center;
       cursor: pointer;
       font-size: 1.2rem;
-      z-index: 10;
-      transition: all 0.15s ease;
+      transition: all 0.18s ease;
+      padding: 0;
     }}
-    .modal-close-btn:hover, .modal-close-btn:active {{
+    .modal-icon-btn:hover, .modal-icon-btn:active {{
       background: rgba(255, 255, 255, 0.25);
     }}
+    .modal-icon-btn.active {{
+      background: rgba(245, 158, 11, 0.25);
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+      box-shadow: 0 0 12px var(--gold-glow);
+    }}
 
-    .modal-header-content {{
-      position: absolute;
-      bottom: 14px;
-      left: 18px;
-      right: 18px;
+    /* CABECERA DE LA FICHA EN FLUJO NATURAL (SIN SOLAPAMIENTO) */
+    .modal-header-section {{
+      padding: 1.1rem 1.25rem 0.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }}
     .modal-badge-row {{
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 6px;
+      flex-wrap: wrap;
     }}
+    .modal-pill-num {{
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: var(--radius-sm);
+    }}
+    .modal-pill-badge {{
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-soft);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+    }}
+    .modal-pill-badge.badge-mocktail {{
+      background: rgba(16, 185, 129, 0.2);
+      border-color: #34d399;
+      color: #6ee7b7;
+    }}
+    .modal-pill-badge.badge-spanish {{
+      background: rgba(245, 158, 11, 0.2);
+      border-color: var(--gold-light);
+      color: var(--gold-light);
+    }}
+
     .modal-title {{
       font-family: 'Cinzel', serif;
-      font-size: 1.6rem;
+      font-size: clamp(1.4rem, 5vw, 1.85rem);
       font-weight: 800;
       color: #ffffff;
-      line-height: 1.15;
+      line-height: 1.2;
+      margin-top: 2px;
+      word-break: break-word;
     }}
     .modal-subtitle {{
       color: var(--gold-light);
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-style: italic;
     }}
 
-    /* MODAL BODY */
+    /* CUERPO DEL MODAL */
     .modal-content-area {{
-      padding: 1.25rem 1.25rem 2.5rem;
+      padding: 0.75rem 1.25rem 2.5rem;
     }}
 
-    /* SPECS GRID */
+    /* SPECS GRID (COPA, MÉTODO Y HIELO - ADAPTADO A MÓVILES) */
     .modal-specs-grid {{
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 8px;
       background: var(--bg-surface-elevated);
-      border-radius: var(--radius-sm);
-      padding: 10px;
+      border-radius: var(--radius-md);
+      padding: 12px 10px;
       margin-bottom: 1.5rem;
       border: 1px solid var(--border-subtle);
     }}
     .modal-spec-cell {{
       text-align: center;
+      padding: 0 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+    }}
+    .modal-spec-cell:not(:last-child) {{
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
     }}
     .modal-spec-cell .lbl {{
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       text-transform: uppercase;
       font-weight: 700;
+      letter-spacing: 0.8px;
       color: var(--text-muted);
-      margin-bottom: 2px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
     }}
     .modal-spec-cell .val {{
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 600;
       color: #ffffff;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      line-height: 1.3;
+      word-break: normal;
+      white-space: normal;
+      overflow-wrap: break-word;
+      max-width: 100%;
+    }}
+
+    @media (max-width: 360px) {{
+      .modal-specs-grid {{
+        padding: 10px 6px;
+        gap: 4px;
+      }}
+      .modal-spec-cell .val {{
+        font-size: 0.76rem;
+      }}
+      .modal-spec-cell .lbl {{
+        font-size: 0.62rem;
+      }}
     }}
 
     /* INGREDIENTES CHECKLIST */
@@ -749,102 +872,80 @@ def build_web_app():
       line-height: 1.4;
     }}
 
-    /* PASOS PASO A PASO */
+    /* PASOS DE PREPARACIÓN */
     .steps-list {{
       list-style: none;
       counter-reset: step-counter;
       margin-bottom: 1.5rem;
     }}
     .step-item {{
-      counter-increment: step-counter;
       display: flex;
       gap: 12px;
-      margin-bottom: 12px;
+      margin-bottom: 0.9rem;
+      align-items: flex-start;
     }}
     .step-num {{
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-full);
       background: rgba(245, 158, 11, 0.15);
       border: 1px solid var(--border-gold);
       color: var(--gold-light);
-      border-radius: var(--radius-full);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 700;
       flex-shrink: 0;
       margin-top: 2px;
     }}
     .step-desc {{
       font-size: 0.92rem;
-      color: var(--text-soft);
+      color: var(--text-main);
       line-height: 1.45;
     }}
 
-    /* CONSEJO DEL BARTENDER */
-    .bartender-box {{
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.05) 100%);
-      border: 1px solid var(--border-gold);
-      border-radius: var(--radius-sm);
+    /* TIP BARTENDER */
+    .tip-box {{
+      background: rgba(245, 158, 11, 0.08);
+      border-left: 3px solid var(--gold-primary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
       padding: 12px 14px;
       margin-bottom: 1.5rem;
     }}
-    .bartender-title {{
+    .tip-title {{
       font-size: 0.75rem;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: var(--gold-light);
       margin-bottom: 4px;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }}
-    .bartender-text {{
-      font-size: 0.85rem;
-      color: #fde68a;
-      font-style: italic;
-      line-height: 1.4;
-    }}
-
-    /* MODAL SHARE / ACTION */
-    .modal-footer-actions {{
-      display: flex;
-      gap: 10px;
-      padding-top: 0.5rem;
-    }}
-
-    /* INFO MODAL (GUÍA BÁSICA) */
-    .guide-modal-body {{
-      padding: 1.5rem;
-    }}
-    .guide-box {{
-      background: var(--bg-surface-elevated);
-      border-radius: var(--radius-sm);
-      padding: 12px;
-      margin-bottom: 12px;
-      border: 1px solid var(--border-subtle);
-    }}
-    .guide-box strong {{
-      color: var(--gold-light);
-      display: block;
-      margin-bottom: 4px;
-      font-size: 0.9rem;
-    }}
-    .guide-box p {{
-      font-size: 0.85rem;
+    .tip-content {{
+      font-size: 0.88rem;
       color: var(--text-soft);
       line-height: 1.4;
+      font-style: italic;
     }}
 
-    /* FLOATING ACTION / SCROLL TO TOP */
+    /* MODAL FOOTER */
+    .modal-footer {{
+      display: flex;
+      gap: 10px;
+      margin-top: 1rem;
+    }}
+
+    /* BOTÓN VOLVER ARRIBA */
     .btn-top {{
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       border-radius: var(--radius-full);
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-gold);
@@ -857,25 +958,29 @@ def build_web_app():
       z-index: 30;
       transition: all 0.2s ease;
     }}
-    .btn-top:active {{
-      transform: scale(0.9);
+    .btn-top:hover, .btn-top:active {{
+      background: var(--gold-primary);
+      color: #090d16;
+      transform: translateY(-2px);
     }}
   </style>
 </head>
 <body>
 
-  <!-- HERO SECTION -->
+  <!-- CABECERA PRINCIPAL -->
   <header class="hero">
-    <div class="hero-badge">Colección de Barra & Coctelería</div>
-    <h1 class="hero-title">50 Cócteles Explicados Paso a Paso</h1>
+    <div class="hero-badge">
+      <span>🍸</span> {total_cocktails} RECETAS DE COCTELERÍA ILUSTRADAS PASO A PASO
+    </div>
+    <h1 class="hero-title">{total_cocktails} CÓCTELES</h1>
     <p class="hero-subtitle">
-      Guía visual interactiva de bolsillo: clásicos legendarios, iconos de la barra española y combinados contemporáneos con medidas exactas y trucos profesionales.
+      La guía visual definitiva para dominar la coctelería casera y profesional. Medidas exactas en mililitros, fotos en alta resolución, trucos de bartender y tus recetas favoritas guardadas en tu navegador.
     </p>
 
     <div class="hero-actions">
       <a href="50_cocteles_explicados_paso_a_paso.pdf" class="btn btn-gold" download>
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"></path></svg>
-        Descargar Libro PDF (55 Páginas)
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+        Descargar Libro PDF
       </a>
       <button class="btn btn-glass" onclick="openGuideModal()">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4m0-4h.01"></path></svg>
@@ -894,10 +999,13 @@ def build_web_app():
         <button id="searchClear" class="search-clear" onclick="clearSearch()">&times;</button>
       </div>
 
-      <!-- FILTROS POR CATEGORÍA -->
+      <!-- FILTROS POR CATEGORÍA & FAVORITOS -->
       <div class="chips-scroller" id="categoryChips">
-        <button class="chip active" data-filter="all">Todos (50)</button>
-        <button class="chip" data-filter="spanish">🇪🇸 Españoles (10)</button>
+        <button class="chip chip-fav" data-filter="favorites" id="favFilterChip">
+          ⭐ Favoritos (<span id="favFilterCount">0</span>)
+        </button>
+        <button class="chip active" data-filter="all">Todos ({total_cocktails})</button>
+        <button class="chip" data-filter="spanish">🇪🇸 Españoles ({spanish_count})</button>
         <button class="chip" data-filter="sin-alcohol">🌿 Sin alcohol</button>
         <button class="chip" data-filter="Aperitivos & Spritz">Aperitivos</button>
         <button class="chip" data-filter="Cítricos & Sours">Sours</button>
@@ -921,8 +1029,8 @@ def build_web_app():
 
   <!-- BARRA DE RESULTADOS -->
   <div class="stats-bar">
-    <span id="resultsCount">Mostrando 50 recetas</span>
-    <span>Toca cualquier cóctel para ver la receta</span>
+    <span id="resultsCount">Mostrando {total_cocktails} recetas</span>
+    <span>Toca la ⭐ para guardar en favoritos</span>
   </div>
 
   <!-- CONTENEDOR DE CÓCTELES -->
@@ -933,8 +1041,8 @@ def build_web_app():
 
     <!-- MENSAJE SIN RESULTADOS -->
     <div class="no-results" id="noResults">
-      <h3>No se encontraron cócteles</h3>
-      <p>Prueba con otro ingrediente, nombre o limpia los filtros.</p>
+      <h3 id="noResultsTitle">No se encontraron cócteles</h3>
+      <p id="noResultsText">Prueba con otro ingrediente, nombre o limpia los filtros.</p>
       <button class="btn btn-gold" style="margin-top:1rem;" onclick="resetAllFilters()">Mostrar todos los cócteles</button>
     </div>
   </main>
@@ -950,36 +1058,47 @@ def build_web_app():
       <div class="modal-hero">
         <img id="mImg" class="modal-hero-img" src="" alt="">
         <div class="modal-hero-gradient"></div>
-        <button class="modal-close-btn" onclick="closeRecipeModal()">&times;</button>
-        
-        <div class="modal-header-content">
-          <div class="modal-badge-row">
-            <span id="mNum" class="card-num">#00</span>
-            <span id="mBadge" class="card-badge">CLÁSICO</span>
-          </div>
-          <h2 id="mTitle" class="modal-title">Nombre del Cóctel</h2>
-          <div id="mSubtitle" class="modal-subtitle">Perfil de sabor</div>
+        <div class="modal-hero-bar">
+          <button class="modal-icon-btn" id="mHeroFavBtn" onclick="toggleCurrentFavorite(event)" title="Favorito" aria-label="Marcar como favorito">
+            <svg class="star-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </button>
+          <button class="modal-icon-btn modal-close-btn" onclick="closeRecipeModal()">&times;</button>
         </div>
       </div>
 
+      <!-- CABECERA EN FLUJO LIMPIO (NUNCA TAPA EL TÍTULO) -->
+      <div class="modal-header-section">
+        <div class="modal-badge-row">
+          <span id="mNum" class="modal-pill-num">#00</span>
+          <span id="mBadge" class="modal-pill-badge">CLÁSICO</span>
+        </div>
+        <h2 id="mTitle" class="modal-title">Nombre del Cóctel</h2>
+        <div id="mSubtitle" class="modal-subtitle">Perfil de sabor</div>
+      </div>
+
       <div class="modal-content-area">
-        <!-- SPECS BAR -->
+        <!-- SPECS BAR: COPA, MÉTODO Y HIELO (SIN TIEMPO) -->
         <div class="modal-specs-grid">
           <div class="modal-spec-cell">
-            <div class="lbl">Copa</div>
+            <div class="lbl">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 21h8m-4-7v7m-7-18l7 9 7-9H5z"/></svg>
+              Copa
+            </div>
             <div class="val" id="mGlass">-</div>
           </div>
           <div class="modal-spec-cell">
-            <div class="lbl">Método</div>
+            <div class="lbl">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+              Método
+            </div>
             <div class="val" id="mMethod">-</div>
           </div>
           <div class="modal-spec-cell">
-            <div class="lbl">Hielo</div>
+            <div class="lbl">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+              Hielo
+            </div>
             <div class="val" id="mIce">-</div>
-          </div>
-          <div class="modal-spec-cell">
-            <div class="lbl">Tiempo</div>
-            <div class="val" id="mTime">-</div>
           </div>
         </div>
 
@@ -999,50 +1118,55 @@ def build_web_app():
         </ol>
 
         <!-- CONSEJO DEL BARTENDER -->
-        <div class="bartender-box">
-          <div class="bartender-title">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-            Consejo del bartender
+        <div class="tip-box">
+          <div class="tip-title">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            Consejo del Bartender
           </div>
-          <div class="bartender-text" id="mTip">-</div>
+          <div class="tip-content" id="mTip">Consejo profesional</div>
         </div>
 
-        <!-- ACCIONES COMPARTIR / CERRAR -->
-        <div class="modal-footer-actions">
+        <!-- BOTONES DE ACCIÓN DEL MODAL -->
+        <div class="modal-footer">
           <button class="btn btn-gold" style="flex:1;" onclick="shareCocktail()">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8m-4-6l-4-4-4 4m4-4v13"></path></svg>
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
             Compartir receta
           </button>
-          <button class="btn btn-glass" onclick="closeRecipeModal()">Cerrar</button>
+          <button class="btn btn-glass" onclick="closeRecipeModal()">
+            Cerrar
+          </button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- MODAL DE GUÍA Y TÉCNICAS BÁSICAS -->
+  <!-- MODAL DE GUÍA TÉCNICA Y CRISTALERÍA -->
   <div class="modal-backdrop" id="guideModal" onclick="closeGuideModal(event)">
-    <div class="modal-sheet" style="max-width: 600px;" onclick="event.stopPropagation()">
-      <div style="padding: 1.5rem 1.5rem 0.5rem; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle);">
-        <h3 style="font-family:'Cinzel',serif; font-size:1.3rem; color:#ffffff;">Guía Básica del Bartender</h3>
-        <button class="modal-close-btn" style="position:static;" onclick="closeGuideModal()">&times;</button>
+    <div class="modal-sheet" onclick="event.stopPropagation()">
+      <div style="padding:1.5rem 1.25rem; border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center;">
+        <h2 style="font-family:'Cinzel', serif; font-size:1.3rem; color:#ffffff;">Guía Rápida de Barra</h2>
+        <button class="modal-icon-btn modal-close-btn" onclick="closeGuideModal()">&times;</button>
       </div>
-      <div class="guide-modal-body">
-        <div class="guide-box">
-          <strong>1. El Hielo no es un adorno</strong>
-          <p>Usa siempre hielo abundante, limpio y macizo. Cuanto más hielo tenga la copa, menor será la dilución indeseada y más frío y equilibrado se mantendrá el trago.</p>
-        </div>
-        <div class="guide-box">
-          <strong>2. Agitado en coctelera (Shake)</strong>
-          <p>Imprescindible para cócteles con zumos cítricos, siropes o cremas (Margarita, Daiquiri, Pisco sour). Emulsiona los ingredientes y aporta microburbujas sedosas.</p>
-        </div>
-        <div class="guide-box">
-          <strong>3. Refrescado en vaso mezclador (Stir)</strong>
-          <p>Para bebidas de alcoholes puros y vermuts (Negroni, Manhattan, Dry Martini). Remueve con cuchara imperial durante 25-30 segundos para enfriar sin enturbiar el líquido.</p>
-        </div>
-        <div class="guide-box">
-          <strong>4. Construido directo en copa (Build)</strong>
-          <p>Para tragos efervescentes y combinados (Gin-tonic, Aperol spritz, Mojito). Preserva la fuerza del carbónico con removidos muy suaves.</p>
-        </div>
+      <div style="padding:1.25rem 1.25rem 2.5rem; font-size:0.9rem; color:var(--text-soft); line-height:1.6;">
+        <h3 style="color:var(--gold-light); margin-bottom:0.4rem; font-size:1rem;">1. La Regla de Oro del Hielo</h3>
+        <p style="margin-bottom:1rem;">Usa siempre hielo abundante, limpio y macizo. Cuanto más hielo tenga la copa, menor será la dilución indeseada y más frío y equilibrado se mantendrá el trago.</p>
+
+        <h3 style="color:var(--gold-light); margin-bottom:0.4rem; font-size:1rem;">2. Cristalería Esencial</h3>
+        <ul style="list-style:disc; margin-left:1.2rem; margin-bottom:1rem;">
+          <li><strong>Copa Coupette / Cocktail:</strong> Para tragos colados sin hielo (Margarita, Daiquiri, Cosmopolitan).</li>
+          <li><strong>Vaso Bajo (Old Fashioned):</strong> Para destilados con hielo en roca o agitados cortos (Negroni, Whisky Sour).</li>
+          <li><strong>Vaso Alto (Highball / Collins):</strong> Para combinados con carbónico y refresco (Mojito, Gin-tonic, Cuba libre).</li>
+          <li><strong>Vaso de Sidra:</strong> Clásico de taberna para calimocho y tragos generosos de vino.</li>
+        </ul>
+
+        <h3 style="color:var(--gold-light); margin-bottom:0.4rem; font-size:1rem;">3. Equivalencia de Medidas</h3>
+        <p style="margin-bottom:1rem;">
+          • 1 oz líquida ≈ 30 ml<br>
+          • 1 golpe (dash) ≈ 0,8 ml<br>
+          • 1 cucharilla de bar (barspoon) ≈ 5 ml
+        </p>
+
+        <button class="btn btn-gold" style="width:100%;" onclick="closeGuideModal()">Entendido</button>
       </div>
     </div>
   </div>
@@ -1056,9 +1180,81 @@ def build_web_app():
     let searchQuery = '';
     let currentCocktail = null;
 
+    // FAVORITOS CON DOBLE PERSISTENCIA (LOCALSTORAGE + COOKIE)
+    let favorites = loadFavorites();
+
+    function loadFavorites() {{
+      try {{
+        const raw = localStorage.getItem('cocteles_favoritos');
+        if (raw) return new Set(JSON.parse(raw));
+      }} catch (e) {{}}
+
+      const match = document.cookie.match(/(?:^|;\\s*)cocteles_favoritos=([^;]+)/);
+      if (match) {{
+        try {{
+          return new Set(JSON.parse(decodeURIComponent(match[1])));
+        }} catch (e) {{}}
+      }}
+      return new Set();
+    }}
+
+    function persistFavorites(favSet) {{
+      favorites = favSet;
+      const arr = Array.from(favSet);
+      const jsonStr = JSON.stringify(arr);
+
+      try {{
+        localStorage.setItem('cocteles_favoritos', jsonStr);
+      }} catch (e) {{}}
+
+      try {{
+        const expires = new Date(Date.now() + 365*24*60*60*1000).toUTCString();
+        document.cookie = `cocteles_favoritos=${{encodeURIComponent(jsonStr)}}; expires=${{expires}}; path=/; SameSite=Lax`;
+      }} catch (e) {{}}
+
+      updateFavoritesBadge();
+    }}
+
+    function toggleFavorite(key, event) {{
+      if (event) event.stopPropagation();
+      const next = new Set(favorites);
+      if (next.has(key)) {{
+        next.delete(key);
+      }} else {{
+        next.add(key);
+      }}
+      persistFavorites(next);
+      renderCards();
+      if (currentCocktail && currentCocktail.key === key) {{
+        syncModalFavUI(next.has(key));
+      }}
+    }}
+
+    function toggleCurrentFavorite(event) {{
+      if (event) event.stopPropagation();
+      if (!currentCocktail) return;
+      toggleFavorite(currentCocktail.key);
+    }}
+
+    function syncModalFavUI(isFav) {{
+      const heroBtn = document.getElementById('mHeroFavBtn');
+      if (heroBtn) {{
+        heroBtn.classList.toggle('active', isFav);
+        heroBtn.innerHTML = `<svg class="star-icon" viewBox="0 0 24 24" width="20" height="20" fill="${{isFav ? '#f59e0b' : 'none'}}" stroke="${{isFav ? '#f59e0b' : '#ffffff'}}" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
+        heroBtn.title = isFav ? 'Quitar de favoritos' : 'Guardar en favoritos';
+      }}
+    }}
+
+    function updateFavoritesBadge() {{
+      const countEl = document.getElementById('favFilterCount');
+      if (countEl) countEl.textContent = favorites.size;
+    }}
+
     const grid = document.getElementById('cocktailsGrid');
     const resultsCount = document.getElementById('resultsCount');
     const noResults = document.getElementById('noResults');
+    const noResultsTitle = document.getElementById('noResultsTitle');
+    const noResultsText = document.getElementById('noResultsText');
     const searchInput = document.getElementById('searchInput');
     const searchClear = document.getElementById('searchClear');
     const btnTop = document.getElementById('btnTop');
@@ -1067,6 +1263,7 @@ def build_web_app():
 
     // INICIALIZACIÓN
     function init() {{
+      updateFavoritesBadge();
       renderCards();
       setupEventListeners();
       checkUrlHash();
@@ -1075,10 +1272,16 @@ def build_web_app():
     // RENDERIZADO DE TARJETAS
     function renderCards() {{
       const filtered = COCKTAILS_DATA.filter(c => {{
-        // Filtro por categoría / sección
-        if (activeFilter === 'spanish' && !c.is_spanish) return false;
-        if (activeFilter === 'sin-alcohol' && !c.sin_alcohol) return false;
-        if (activeFilter !== 'all' && activeFilter !== 'spanish' && activeFilter !== 'sin-alcohol' && c.section !== activeFilter) return false;
+        // Filtro por favoritos
+        if (activeFilter === 'favorites') {{
+          if (!favorites.has(c.key)) return false;
+        }} else if (activeFilter === 'spanish' && !c.is_spanish) {{
+          return false;
+        }} else if (activeFilter === 'sin-alcohol' && !c.sin_alcohol) {{
+          return false;
+        }} else if (activeFilter !== 'all' && activeFilter !== 'favorites' && activeFilter !== 'spanish' && activeFilter !== 'sin-alcohol' && c.section !== activeFilter) {{
+          return false;
+        }}
 
         // Filtro por destilado
         if (activeSpirit !== 'all' && c.liquor_group !== activeSpirit) return false;
@@ -1101,12 +1304,23 @@ def build_web_app():
 
       if (filtered.length === 0) {{
         noResults.style.display = 'block';
+        if (activeFilter === 'favorites') {{
+          noResultsTitle.textContent = 'Aún no tienes cócteles favoritos';
+          noResultsText.textContent = 'Toca el icono de la estrella ⭐ en cualquier cóctel para guardarlo aquí y consultarlo rápidamente.';
+        }} else {{
+          noResultsTitle.textContent = 'No se encontraron cócteles';
+          noResultsText.textContent = 'Prueba con otro ingrediente, nombre o limpia los filtros.';
+        }}
         resultsCount.textContent = '0 recetas encontradas';
         return;
       }}
 
       noResults.style.display = 'none';
-      resultsCount.textContent = `Mostrando ${{filtered.length}} de 50 recetas`;
+      if (activeFilter === 'favorites') {{
+        resultsCount.textContent = `Mostrando ${{filtered.length}} ${{filtered.length === 1 ? 'cóctel favorito' : 'cócteles favoritos'}}`;
+      }} else {{
+        resultsCount.textContent = `Mostrando ${{filtered.length}} de ${{COCKTAILS_DATA.length}} recetas`;
+      }}
 
       filtered.forEach(c => {{
         const card = document.createElement('div');
@@ -1123,9 +1337,14 @@ def build_web_app():
           badgeText = '🇪🇸 Ibérico';
         }}
 
+        const isFav = favorites.has(c.key);
+
         card.innerHTML = `
           <div class="card-img-wrap">
             <span class="card-num">#${{String(c.num).padStart(2, '0')}}</span>
+            <button class="card-fav-btn ${{isFav ? 'active' : ''}}" onclick="toggleFavorite('${{c.key}}', event)" title="${{isFav ? 'Quitar de favoritos' : 'Guardar en favoritos'}}" aria-label="Favorito">
+              <svg class="star-icon" viewBox="0 0 24 24" width="16" height="16" fill="${{isFav ? '#f59e0b' : 'none'}}" stroke="${{isFav ? '#f59e0b' : '#ffffff'}}" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </button>
             <span class="${{badgeClass}}">${{badgeText}}</span>
             <img class="card-img" src="${{c.image_url}}" alt="${{c.nombre}}" loading="lazy">
           </div>
@@ -1169,14 +1388,16 @@ def build_web_app():
       
       const badge = document.getElementById('mBadge');
       badge.textContent = c.sin_alcohol ? '🌿 Sin alcohol' : (c.is_spanish ? '🇪🇸 Ibérico' : c.section);
-      badge.className = 'card-badge' + (c.sin_alcohol ? ' badge-mocktail' : (c.is_spanish ? ' badge-spanish' : ''));
+      badge.className = 'modal-pill-badge' + (c.sin_alcohol ? ' badge-mocktail' : (c.is_spanish ? ' badge-spanish' : ''));
 
       document.getElementById('mTitle').textContent = c.nombre;
       document.getElementById('mSubtitle').textContent = `${{c.base_alcohol}} · ${{c.perfil_sabor || ''}}`;
       document.getElementById('mGlass').textContent = c.cristaleria;
       document.getElementById('mMethod').textContent = c.metodo;
       document.getElementById('mIce').textContent = c.hielo;
-      document.getElementById('mTime').textContent = c.tiempo_min;
+
+      // Sincronizar estado de favorito en el modal
+      syncModalFavUI(favorites.has(c.key));
 
       // Ingredientes
       const ingList = document.getElementById('mIngredients');
@@ -1247,7 +1468,7 @@ def build_web_app():
     function shareCocktail() {{
       if (!currentCocktail) return;
       const shareData = {{
-        title: `${{currentCocktail.nombre}} | 50 Cócteles`,
+        title: `${{currentCocktail.nombre}} | ${{COCKTAILS_DATA.length}} Cócteles`,
         text: `Aprende a preparar ${{currentCocktail.nombre}} paso a paso: ${{currentCocktail.ingredientes.join(', ')}}`,
         url: window.location.href
       }};
@@ -1268,7 +1489,7 @@ def build_web_app():
         renderCards();
       }});
 
-      // Filtros de categoría
+      // Filtros de categoría & Favoritos
       document.querySelectorAll('#categoryChips .chip').forEach(btn => {{
         btn.addEventListener('click', () => {{
           document.querySelectorAll('#categoryChips .chip').forEach(b => b.classList.remove('active'));
